@@ -23,9 +23,10 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void HandleInputs()
     {
+        #region Snap inputs
         float roundedX = PlayerInputs.Instance.moveInput.x;
         float roundedY = PlayerInputs.Instance.moveInput.y;
-
+        
         if (roundedX < 0 && roundedX >= -0.5f)
         {
             roundedX = -0.5f;
@@ -68,6 +69,7 @@ public class PlayerAnimationController : MonoBehaviour
         {
             roundedY = 0;
         }
+        #endregion
 
         m_animator.SetFloat("Horizontal", roundedX, 0.1f, Time.deltaTime);
         m_animator.SetFloat("Vertical", roundedY, 0.1f, Time.deltaTime);
