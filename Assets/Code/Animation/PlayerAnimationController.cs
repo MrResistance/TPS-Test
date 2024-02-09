@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -7,7 +8,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     [SerializeField] private MultiAimConstraint m_bodyConstraint;
     [SerializeField] private MultiAimConstraint m_handAimConstraint;
-    [SerializeField] private TwoBoneIKConstraint m_secondHandGrabWeapon;
 
     private void Start()
     {
@@ -77,15 +77,48 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void StartAiming()
     {
-        m_bodyConstraint.weight = 0.7f;
-        m_handAimConstraint.weight = 1f;
+        StopAllCoroutines();
+        StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0.7f, 0.25f));
+        StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 1f, 0.05f));
         m_animator.SetBool("Aiming", true);
     }
 
     private void StopAiming()
     {
-        m_bodyConstraint.weight = 0f;
-        m_handAimConstraint.weight = 0f;
+        StopAllCoroutines();
+        StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0f, 0.25f));
+        StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 0f, 0.25f));
         m_animator.SetBool("Aiming", false);
+    }
+
+    private IEnumerator ChangeRigWeightValueOverTime(MultiAimConstraint multiAimConstraint, float targetVal, float duration)
+    {
+        float startVal = multiAimConstraint.weight;
+        float timeElapsed = 0f;
+
+        // Recursive step function
+        void Step()
+        {
+            if (timeElapsed < duration)
+            {
+                timeElapsed += Time.deltaTime;
+                multiAimConstraint.weight = Mathf.Lerp(startVal, targetVal, timeElapsed / duration);
+                StartCoroutine(StepCoroutine()); // Schedule next step
+            }
+            else
+            {
+                multiAimConstraint.weight = targetVal; // Ensure target value is set at the end
+            }
+        }
+
+        // Wrapper coroutine to call the step function
+        IEnumerator StepCoroutine()
+        {
+            yield return null; // Wait for the next frame
+            Step();
+        }
+
+        Step(); // Start the process
+        yield return null; // This coroutine waits for the first call to Step() to finish
     }
 }

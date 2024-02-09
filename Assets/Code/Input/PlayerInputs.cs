@@ -7,6 +7,7 @@ public class PlayerInputs : MonoBehaviour
     public event Action OnPrimaryPressed;
     public event Action OnPrimaryHeld;
     public event Action OnPrimaryReleased;
+    public event Action OnSecondaryPressed;
     public event Action OnSecondaryHeld;
     public event Action OnSecondaryReleased;
     public event Action OnReload;
@@ -33,6 +34,7 @@ public class PlayerInputs : MonoBehaviour
 
         controls.Actions.Primary.performed += PrimaryPressed;
         controls.Actions.Primary.canceled += PrimaryReleased;
+        controls.Actions.Secondary.performed += SecondaryPressed;
         controls.Actions.Secondary.canceled += SecondaryReleased;
         controls.Actions.Reload.performed += Reload;
         controls.Actions.Jump.performed += Jump;
@@ -69,7 +71,10 @@ public class PlayerInputs : MonoBehaviour
     {
         OnPrimaryReleased?.Invoke();
     }
-
+    private void SecondaryPressed(InputAction.CallbackContext context)
+    {
+        OnSecondaryPressed?.Invoke();
+    }
     private void SecondaryReleased(InputAction.CallbackContext context)
     {
         OnSecondaryReleased?.Invoke();
