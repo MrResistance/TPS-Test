@@ -23,8 +23,54 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void HandleInputs()
     {
-        m_animator.SetFloat("Horizontal", PlayerInputs.Instance.moveInput.x, 0.2f, Time.deltaTime);
-        m_animator.SetFloat("Vertical", PlayerInputs.Instance.moveInput.y, 0.2f, Time.deltaTime);
+        float roundedX = PlayerInputs.Instance.moveInput.x;
+        float roundedY = PlayerInputs.Instance.moveInput.y;
+
+        if (roundedX < 0 && roundedX >= -0.5f)
+        {
+            roundedX = -0.5f;
+        }
+        else if (roundedX < -0.5f)
+        {
+            roundedX = -1;
+        }
+        else if (roundedX > 0 && roundedX <= 0.5)
+        {
+            roundedX = 0.5f;
+        }
+        else if (roundedX > 0.5)
+        {
+            roundedX = 1;
+        }
+
+        if (roundedY < 0 && roundedY >= -0.5f)
+        {
+            roundedY = -0.5f;
+        }
+        else if (roundedY < -0.5f)
+        {
+            roundedY = -1;
+        }
+        else if (roundedY > 0 && roundedY <= 0.5)
+        {
+            roundedY = 0.5f;
+        }
+        else if (roundedY > 0.5)
+        {
+            roundedY = 1;
+        }
+
+        if (roundedX < 0.1 && roundedX > -0.1)
+        {
+            roundedX = 0;
+        }
+        if (roundedY < 0.1 && roundedY > -0.1)
+        {
+            roundedY = 0;
+        }
+
+        m_animator.SetFloat("Horizontal", roundedX, 0.1f, Time.deltaTime);
+        m_animator.SetFloat("Vertical", roundedY, 0.1f, Time.deltaTime);
     }
 
     private void StartAiming()
