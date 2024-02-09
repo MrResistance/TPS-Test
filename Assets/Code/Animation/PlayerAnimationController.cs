@@ -60,11 +60,11 @@ public class PlayerAnimationController : MonoBehaviour
             roundedY = 1;
         }
 
-        if (roundedX < 0.1 && roundedX > -0.1)
+        if (roundedX < 0.05 && roundedX > -0.05)
         {
             roundedX = 0;
         }
-        if (roundedY < 0.1 && roundedY > -0.1)
+        if (roundedY < 0.05 && roundedY > -0.05)
         {
             roundedY = 0;
         }
