@@ -17,7 +17,7 @@ MonoBehaviour:
   HitForce: 100
   Damage: 10
   EffectiveRange: 300
-  FireRateCooldown: 0.01
+  FireRateCooldown: 0.1
   MaxClipSize: 30
   MaxReserveAmmo: 300
   CurrentReserveAmmo: 150

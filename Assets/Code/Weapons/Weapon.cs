@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +38,10 @@ public class Weapon : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator m_animator;
     [SerializeField] private ParticleSystem m_gunshotFX;
+    [SerializeField] private LineRenderer lineRenderer;
+    public Transform Barrel;
 
+    public event Action OnShoot;
     private ReloadAnimationEventBroadcaster m_reloadEventBroadcaster;
 
     #region Event Subscriptions
@@ -233,9 +237,8 @@ public class Weapon : MonoBehaviour
             m_currentAmmoInClip--;
             m_gunshotFX.Play();
             Invoke(nameof(StopShooting), m_fireRateCooldown);
+            OnShoot?.Invoke();
             //WeaponRig.Instance.UpdateAmmoCounterMethod();
-
-            //OnShoot?.Invoke();
 
             //PlayRandomSFX(m_shot);
         }
@@ -252,7 +255,7 @@ public class Weapon : MonoBehaviour
     {
         if (sfx.Count > 0)
         {
-            //WeaponRig.Instance.AudioSource.PlayOneShot(sfx[UnityEngine.Random.Range(0, sfx.Count)]);
+            //m_audioSource.PlayOneShot(sfx[UnityEngine.Random.Range(0, sfx.Count)]);
         }
     }
 
