@@ -106,15 +106,7 @@ public class CameraController : MonoBehaviour
             {
                 m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, m_ADS_FOV, m_transitionProgress);
 
-                //if (m_currentWeapon.Type == Weapon.WeaponType.sniper)
-                //{
-                //    m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, m_ADS_Sniper_FOV, m_transitionProgress);
-                //    //m_sniperScopeCamera.fieldOfView = Mathf.Lerp(m_sniperScopeCamera.fieldOfView, m_SniperScope_FOV, m_transitionProgress);
-                //}
-                //else
-                //{
-                    
-                //}
+                //TODO Different FOV solution for sniper rifles/scoped weapons
             }
             else
             {
