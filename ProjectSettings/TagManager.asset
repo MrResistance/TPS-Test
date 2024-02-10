@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Damageable
   - Water
   - UI
-  - 
-  - 
+  - Environment
+  - Ground
   - 
   - 
   - 
