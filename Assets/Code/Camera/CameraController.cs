@@ -55,15 +55,12 @@ public class CameraController : MonoBehaviour
         PlayerInputs.Instance.OnSecondaryPressed -= AimDownSight;
         PlayerInputs.Instance.OnSecondaryReleased -= AimFromHip;
     }
-    private void Update()
-    {
-        TransitionView();
-    }
 
     private void LateUpdate()
     {
         FollowCharacter();
         RotateCamera();
+        TransitionView();
     }
 
     private void FollowCharacter()
