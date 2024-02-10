@@ -32578,6 +32578,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4884179211162978, guid: 2da28168743016746b5df127f2837a4e, type: 3}
   m_PrefabInstance: {fileID: 752651162}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &752727781 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5655758347019534585, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+  m_PrefabInstance: {fileID: 5651408785949722391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &754538823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52594,6 +52599,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4561451306695836, guid: 63f52685b1f2fab498745a15377a2b35, type: 3}
   m_PrefabInstance: {fileID: 1220918474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1222630284 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5651408785162550310, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+  m_PrefabInstance: {fileID: 5651408785949722391}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1223664338
 PrefabInstance:
@@ -91562,12 +91572,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_camera
+      value: 
+      objectReference: {fileID: 1222630284}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_ADS_FOV
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: maxYAngle
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: minYAngle
       value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_maxYAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_minYAngle
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_HipFire_FOV
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: cameraOffset.x
@@ -91577,6 +91607,26 @@ PrefabInstance:
       propertyPath: cameraOffset.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_cameraOffset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_cameraOffset.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_cameraOffset.z
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651408785949722393, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_characterTransform
+      value: 
+      objectReference: {fileID: 752727781}
     - target: {fileID: 5655619581986564680, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.00006317464

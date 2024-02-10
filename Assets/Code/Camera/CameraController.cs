@@ -2,36 +2,73 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform characterTransform; // Assign your character's transform here
-    [SerializeField] private Vector3 cameraOffset; // The offset from the character
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private float minYAngle = -60f;
-    [SerializeField] private float maxYAngle = 60f;
+    [SerializeField] private Camera m_camera;
+    [SerializeField] private Transform m_characterTransform;
+    [SerializeField] private Vector3 m_cameraOffset;
+    [SerializeField] private float m_rotationSpeed;
+    [SerializeField] private float m_minYAngle = -60f;
+    [SerializeField] private float m_maxYAngle = 60f;
 
+    [SerializeField] private float m_ADS_FOV;
+    [SerializeField] private float m_HipFire_FOV;
+
+    private float m_transitionProgress;
+    private float m_transitionDuration = 0.5f;
+    private bool m_isAimingDownSight;
+    
     private float currentYRotation = 0f;
+
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        // Optionally adjust the initial offset based on the current relative position
-        //cameraOffset = transform.position - characterTransform.position;
+        if (PlayerInputs.Instance == null)
+        {
+            return; 
+        }
+        PlayerInputs.Instance.OnSecondaryPressed -= AimDownSight;
+        PlayerInputs.Instance.OnSecondaryReleased -= AimFromHip;
+        PlayerInputs.Instance.OnSecondaryPressed += AimDownSight;
+        PlayerInputs.Instance.OnSecondaryReleased += AimFromHip;
+    }
+
+    private void OnEnable()
+    {
+        if (PlayerInputs.Instance == null)
+        {
+            return;
+        }
+        PlayerInputs.Instance.OnSecondaryPressed -= AimDownSight;
+        PlayerInputs.Instance.OnSecondaryReleased -= AimFromHip;
+        PlayerInputs.Instance.OnSecondaryPressed += AimDownSight;
+        PlayerInputs.Instance.OnSecondaryReleased += AimFromHip;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInputs.Instance.OnSecondaryPressed -= AimDownSight;
+        PlayerInputs.Instance.OnSecondaryReleased -= AimFromHip;
+    }
+    private void OnDestroy()
+    {
+        PlayerInputs.Instance.OnSecondaryPressed -= AimDownSight;
+        PlayerInputs.Instance.OnSecondaryReleased -= AimFromHip;
+    }
+    private void Update()
+    {
+        TransitionView();
     }
 
     private void LateUpdate()
     {
-        // Move the camera to follow the character
         FollowCharacter();
-
-        // Rotate the camera based on input
         RotateCamera();
     }
 
     private void FollowCharacter()
     {
-        // Adjust the position based on the character's position and the fixed offset
-        // Ensures the camera maintains a fixed distance behind the character
-        Vector3 newPosition = characterTransform.position + characterTransform.TransformDirection(cameraOffset);
+        Vector3 newPosition = m_characterTransform.position + m_characterTransform.TransformDirection(m_cameraOffset);
         transform.position = newPosition;
     }
 
@@ -40,14 +77,52 @@ public class CameraController : MonoBehaviour
         Vector2 lookDirection = PlayerInputs.Instance.lookInput;
 
         // Calculate new y rotation (x-axis rotation)
-        currentYRotation += -lookDirection.y * rotationSpeed * Time.deltaTime;
-        currentYRotation = Mathf.Clamp(currentYRotation, minYAngle, maxYAngle);
+        currentYRotation += -lookDirection.y * m_rotationSpeed * Time.deltaTime;
+        currentYRotation = Mathf.Clamp(currentYRotation, m_minYAngle, m_maxYAngle);
 
         // Apply the clamped rotation around the x-axis
         transform.localEulerAngles = new Vector3(currentYRotation, transform.localEulerAngles.y, 0);
 
         // Rotate around y-axis with horizontal input
-        // Note: Consider rotating the character instead, and let the camera follow the character's rotation
-        characterTransform.Rotate(Vector3.up, lookDirection.x * rotationSpeed * Time.deltaTime);
+        m_characterTransform.Rotate(Vector3.up, lookDirection.x * m_rotationSpeed * Time.deltaTime);
+    }
+
+    private void AimDownSight()
+    {
+        m_isAimingDownSight = true;
+        m_transitionProgress = 0f; // Reset progress
+    }
+
+    private void AimFromHip()
+    {
+        m_isAimingDownSight = false;
+        m_transitionProgress = 0f; // Reset progress
+    }
+    
+    private void TransitionView()
+    {
+        if (m_transitionProgress < 1.0f)
+        {
+            m_transitionProgress += Time.deltaTime / m_transitionDuration;
+
+            if (m_isAimingDownSight)
+            {
+                m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, m_ADS_FOV, m_transitionProgress);
+
+                //if (m_currentWeapon.Type == Weapon.WeaponType.sniper)
+                //{
+                //    m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, m_ADS_Sniper_FOV, m_transitionProgress);
+                //    //m_sniperScopeCamera.fieldOfView = Mathf.Lerp(m_sniperScopeCamera.fieldOfView, m_SniperScope_FOV, m_transitionProgress);
+                //}
+                //else
+                //{
+                    
+                //}
+            }
+            else
+            {
+                m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, m_HipFire_FOV, m_transitionProgress);
+            }
+        }
     }
 }

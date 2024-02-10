@@ -226,7 +226,10 @@ public class Weapon : MonoBehaviour
                 m_currentlyShooting = true;
                 Shoot();
             }
-            //PlayRandomSFX(m_dryFire);
+            else
+            {
+                //PlayRandomSFX(m_dryFire);
+            }
         }
     }
 
@@ -268,7 +271,6 @@ public class Weapon : MonoBehaviour
         m_fireRateCooldown = m_weaponData.FireRateCooldown;
         m_maxClipSize = m_weaponData.MaxClipSize;
         m_maxReserveAmmo = m_weaponData.MaxReserveAmmo;
-
 
         if (start)
         {
