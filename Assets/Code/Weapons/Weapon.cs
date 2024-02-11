@@ -200,7 +200,7 @@ public class Weapon : MonoBehaviour
 
         //PlayRandomSFX(m_insertMag);
 
-        //WeaponRig.Instance.UpdateAmmoCounterMethod();
+        WeaponRig.Instance.UpdateAmmoCounterMethod();
     }
 
     public void GainReserveAmmo(int amount)
@@ -239,9 +239,11 @@ public class Weapon : MonoBehaviour
         {
             m_currentAmmoInClip--;
             m_gunshotFX.Play();
+
             Invoke(nameof(StopShooting), m_fireRateCooldown);
             OnShoot?.Invoke();
-            //WeaponRig.Instance.UpdateAmmoCounterMethod();
+
+            WeaponRig.Instance.UpdateAmmoCounterMethod();
 
             //PlayRandomSFX(m_shot);
         }

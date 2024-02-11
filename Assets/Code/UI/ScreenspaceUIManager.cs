@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class ScreenspaceUIManager : MonoBehaviour
     public static ScreenspaceUIManager Instance;
 
     [SerializeField] private Image m_crosshair;
+    [SerializeField] private TextMeshProUGUI m_ammoCounterText;
 
     private void Awake()
     {
@@ -18,45 +20,54 @@ public class ScreenspaceUIManager : MonoBehaviour
             Destroy(this);
         }
     }
-
+    
+    #region Subscriptions
     private void Start()
     {
-        if (PlayerInputs.Instance == null)
+        if (PlayerInputs.Instance != null)
         {
-            return;
+            PlayerInputs.Instance.OnSecondaryPressed -= EnableCrosshair;
+            PlayerInputs.Instance.OnSecondaryReleased -= DisableCrosshair;
+            PlayerInputs.Instance.OnSecondaryPressed += EnableCrosshair;
+            PlayerInputs.Instance.OnSecondaryReleased += DisableCrosshair;
         }
 
-        PlayerInputs.Instance.OnSecondaryPressed -= EnableCrosshair;
-        PlayerInputs.Instance.OnSecondaryReleased -= DisableCrosshair;
-        PlayerInputs.Instance.OnSecondaryPressed += EnableCrosshair;
-        PlayerInputs.Instance.OnSecondaryReleased += DisableCrosshair;
+        if (WeaponRig.Instance != null)
+        {
+            WeaponRig.Instance.UpdateAmmoCounter -= UpdateAmmoCounterText;
+            WeaponRig.Instance.UpdateAmmoCounter += UpdateAmmoCounterText;
+        }
     }
-
-    #region Subscriptions
 
     private void OnEnable()
     {
-        if (PlayerInputs.Instance == null)
+        if (PlayerInputs.Instance != null)
         {
-            return;
+            PlayerInputs.Instance.OnSecondaryPressed -= EnableCrosshair;
+            PlayerInputs.Instance.OnSecondaryReleased -= DisableCrosshair;
+            PlayerInputs.Instance.OnSecondaryPressed += EnableCrosshair;
+            PlayerInputs.Instance.OnSecondaryReleased += DisableCrosshair;
         }
 
-        PlayerInputs.Instance.OnSecondaryPressed -= EnableCrosshair;
-        PlayerInputs.Instance.OnSecondaryReleased -= DisableCrosshair;
-        PlayerInputs.Instance.OnSecondaryPressed += EnableCrosshair;
-        PlayerInputs.Instance.OnSecondaryReleased += DisableCrosshair;
+        if (WeaponRig.Instance != null)
+        {
+            WeaponRig.Instance.UpdateAmmoCounter -= UpdateAmmoCounterText;
+            WeaponRig.Instance.UpdateAmmoCounter += UpdateAmmoCounterText;
+        }
     }
 
     private void OnDisable()
     {
         PlayerInputs.Instance.OnSecondaryPressed -= EnableCrosshair;
         PlayerInputs.Instance.OnSecondaryReleased -= DisableCrosshair;
+        WeaponRig.Instance.UpdateAmmoCounter -= UpdateAmmoCounterText;
     }
 
     private void OnDestroy()
     {
         PlayerInputs.Instance.OnSecondaryPressed -= EnableCrosshair;
         PlayerInputs.Instance.OnSecondaryReleased -= DisableCrosshair;
+        WeaponRig.Instance.UpdateAmmoCounter -= UpdateAmmoCounterText;
     }
     #endregion
 
@@ -68,5 +79,10 @@ public class ScreenspaceUIManager : MonoBehaviour
     public void DisableCrosshair() 
     {
         m_crosshair.enabled = false;
+    }
+
+    public void UpdateAmmoCounterText(int currentClip, int reserveAmmo)
+    {
+        m_ammoCounterText.text = currentClip.ToString() + " / " + reserveAmmo.ToString();
     }
 }

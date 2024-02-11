@@ -8,7 +8,7 @@ public class WeaponRig : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Weapon m_currentWeapon;
-    [Tooltip("This is the transform that is parent to the weapon gameobjects"),
+    [Tooltip("This is the transform that is parent to the weapon gameobjects."),
         SerializeField] private Transform m_weaponHand;
     public Weapon CurrentWeapon => m_currentWeapon;
     public AudioSource AudioSource;
@@ -84,7 +84,7 @@ public class WeaponRig : MonoBehaviour
         }
 
         m_currentWeaponLocation = m_weapons.IndexOf(m_currentWeapon);
-        m_currentWeapon.enabled = false;
+        //m_currentWeapon.enabled = false;
         m_currentWeapon.gameObject.SetActive(false);
 
         if (upOrDown)
@@ -112,7 +112,7 @@ public class WeaponRig : MonoBehaviour
 
     private void CurrentWeaponSetup()
     {
-        m_currentWeapon.enabled = true;
+        //m_currentWeapon.enabled = true;
         m_currentWeapon.gameObject.SetActive(true);
         UpdateAmmoCounterMethod();
     }
