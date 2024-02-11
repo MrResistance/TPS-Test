@@ -45,6 +45,21 @@ public class ObjectPooler : MonoBehaviour
             poolDictionary.Add(pool.tag, objectPool);
         }
     }
+
+    public SurfaceTagMapping surfaceTagMapping;
+
+    public GameObject SpawnEffect(SurfaceType surfaceType, Vector3 position, Quaternion rotation)
+    {
+        string tag = surfaceTagMapping.GetTagForSurfaceType(surfaceType);
+        if (string.IsNullOrEmpty(tag))
+        {
+            Debug.LogWarning($"No particle effect mapped for surface type {surfaceType}.");
+            return null;
+        }
+
+        return SpawnFromPool(tag, position, rotation);
+    }
+
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
