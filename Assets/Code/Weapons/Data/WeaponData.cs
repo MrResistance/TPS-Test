@@ -6,7 +6,8 @@ public class WeaponData : ScriptableObject
     public string Name;
 
     [Header("Settings")]
-    public Weapon.FireMode FireMode;
+    public FireMode FireMode;
+    public WeaponType WeaponType;
 
     [Header("Stats")]
     public float HitForce;
@@ -19,3 +20,6 @@ public class WeaponData : ScriptableObject
     public int MaxReserveAmmo;
     public int CurrentReserveAmmo;
 }
+
+public enum FireMode { semiAuto, fullAuto }
+public enum WeaponType { pistol, assaultRifle }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -9,10 +10,14 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private MultiAimConstraint m_bodyConstraint;
     [SerializeField] private MultiAimConstraint m_handAimConstraint;
 
+    private Dictionary<WeaponType, int> weaponAnimationMap;
+
     private void Start()
     {
         PlayerInputs.Instance.OnSecondaryHeld += StartAiming;
         PlayerInputs.Instance.OnSecondaryReleased += StopAiming;
+        InitialiseWeaponTypeDictionary();
+        PlayerInputs.Instance.OnSelect += SwitchWeapon;
     }
 
     // Update is called once per frame
@@ -120,5 +125,20 @@ public class PlayerAnimationController : MonoBehaviour
 
         Step(); // Start the process
         yield return null; // This coroutine waits for the first call to Step() to finish
+    }
+
+    private void InitialiseWeaponTypeDictionary()
+    {
+        weaponAnimationMap = new Dictionary<WeaponType, int>()
+        {
+            { WeaponType.pistol, 0 },
+            { WeaponType.assaultRifle, 1 },
+            // Map new weapon types to their animation IDs here
+        };
+    }
+
+    public void SwitchWeapon(bool _)
+    {
+        m_animator.SetInteger("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
     }
 }

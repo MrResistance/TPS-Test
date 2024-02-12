@@ -91904,4 +91904,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_weapon: {fileID: 388516390}
-  m_rayFromBarrel: 1
+  m_rayFromBarrel: 0

@@ -9,8 +9,8 @@ public class Weapon : MonoBehaviour
     [Header("Settings")]
     public bool WeaponUnlocked;
 
-    [HideInInspector] public FireMode WeaponFireMode;
-    public enum FireMode { semiAuto, fullAuto }
+    public FireMode WeaponFireMode;
+    public WeaponType WeaponType;
 
     //Stats
     public float m_hitForce;
@@ -267,6 +267,7 @@ public class Weapon : MonoBehaviour
     protected void GetWeaponData(bool start)
     {
         WeaponFireMode = m_weaponData.FireMode;
+        WeaponType = m_weaponData.WeaponType;
         m_hitForce = m_weaponData.HitForce;
         m_damage = m_weaponData.Damage;
         m_effectiveRange = m_weaponData.EffectiveRange;
