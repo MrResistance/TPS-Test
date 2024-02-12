@@ -18,6 +18,7 @@ public class WeaponRig : MonoBehaviour
     [SerializeField] private int m_currentWeaponLocation;
 
     public event Action<int, int> UpdateAmmoCounter;
+    public event Action OnWeaponChanged;
 
     private void Awake()
     {
@@ -84,7 +85,6 @@ public class WeaponRig : MonoBehaviour
         }
 
         m_currentWeaponLocation = m_weapons.IndexOf(m_currentWeapon);
-        //m_currentWeapon.enabled = false;
         m_currentWeapon.gameObject.SetActive(false);
 
         if (upOrDown)
@@ -108,11 +108,11 @@ public class WeaponRig : MonoBehaviour
 
         m_currentWeapon = m_weapons[m_currentWeaponLocation];
         CurrentWeaponSetup();
+        OnWeaponChanged?.Invoke();
     }
 
     private void CurrentWeaponSetup()
     {
-        //m_currentWeapon.enabled = true;
         m_currentWeapon.gameObject.SetActive(true);
         UpdateAmmoCounterMethod();
     }

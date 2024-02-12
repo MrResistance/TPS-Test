@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &139152935
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 139152936}
-  m_Layer: 0
-  m_Name: SecondHandGrabWeapon_target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &139152936
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139152935}
-  m_LocalRotation: {x: 0.005586889, y: 0.0038933433, z: -0.99958575, w: -0.027966289}
-  m_LocalPosition: {x: -0.1142, y: 0.0057, z: 0.2921}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4792254929554238}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0.428, y: -0.652, z: -183.208}
 --- !u!1 &488423391
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488423392}
   m_Layer: 0
-  m_Name: SecondHandGrabWeapon_hint
+  m_Name: SecondHandGrabWeapon_hintSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4792254929554238}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1042019584973368
 GameObject:
@@ -98,8 +67,8 @@ Transform:
   - {fileID: 4847456283626162}
   - {fileID: 4343602305526544}
   - {fileID: 4165583890651318}
-  - {fileID: 139152936}
   - {fileID: 488423392}
+  - {fileID: 7531065408708281501}
   - {fileID: 6779362229062663497}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -190,11 +159,16 @@ MonoBehaviour:
   m_weaponData: {fileID: 11400000, guid: 094b88c96d955674c933fea1557dcb01, type: 2}
   WeaponUnlocked: 1
   WeaponFireMode: 0
+  WeaponType: 0
   m_hitForce: 0
   m_damage: 0
   m_effectiveRange: 0
   m_animator: {fileID: 1882539720638343615}
   m_gunshotFX: {fileID: 6684682739788207175}
+  lineRenderer: {fileID: 0}
+  Barrel: {fileID: 0}
+  SecondHandGrabWeapon_targetSocket: {fileID: 0}
+  SecondHandGrabWeapon_hintSocket: {fileID: 0}
 --- !u!1 &1113596721453734
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +501,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &239706032339355752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7531065408708281501}
+  m_Layer: 0
+  m_Name: SecondHandGrabWeapon_targetSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7531065408708281501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239706032339355752}
+  m_LocalRotation: {x: 0.005586889, y: 0.0038933433, z: -0.99958575, w: -0.027966289}
+  m_LocalPosition: {x: -0.1142, y: 0.0057, z: 0.2921}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4792254929554238}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0.428, y: -0.652, z: -183.208}
 --- !u!1001 &6774986995168974343
 PrefabInstance:
   m_ObjectHideFlags: 0

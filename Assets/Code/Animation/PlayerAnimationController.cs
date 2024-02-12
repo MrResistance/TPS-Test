@@ -10,14 +10,17 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private MultiAimConstraint m_bodyConstraint;
     [SerializeField] private MultiAimConstraint m_handAimConstraint;
 
-    private Dictionary<WeaponType, int> weaponAnimationMap;
+    [SerializeField] private Transform secondHandGrabWeaponHint;
+    [SerializeField] private Transform secondHandGrabWeaponTarget;
+
+    private Dictionary<WeaponType, float> weaponAnimationMap;
 
     private void Start()
     {
         PlayerInputs.Instance.OnSecondaryHeld += StartAiming;
         PlayerInputs.Instance.OnSecondaryReleased += StopAiming;
         InitialiseWeaponTypeDictionary();
-        PlayerInputs.Instance.OnSelect += SwitchWeapon;
+        WeaponRig.Instance.OnWeaponChanged += SwitchWeapon;
     }
 
     // Update is called once per frame
@@ -129,7 +132,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void InitialiseWeaponTypeDictionary()
     {
-        weaponAnimationMap = new Dictionary<WeaponType, int>()
+        weaponAnimationMap = new Dictionary<WeaponType, float>()
         {
             { WeaponType.pistol, 0 },
             { WeaponType.assaultRifle, 1 },
@@ -137,8 +140,10 @@ public class PlayerAnimationController : MonoBehaviour
         };
     }
 
-    public void SwitchWeapon(bool _)
+    public void SwitchWeapon()
     {
-        m_animator.SetInteger("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
+        secondHandGrabWeaponHint.SetParent(WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintSocket, false);
+        secondHandGrabWeaponTarget.SetParent(WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetSocket, false);
+        m_animator.SetFloat("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
     }
 }
