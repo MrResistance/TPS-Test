@@ -13,6 +13,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     [SerializeField] private Transform m_secondHandGrabWeaponTarget;
     [SerializeField] private Transform m_secondHandGrabWeaponHint;
+    [SerializeField] private Transform m_primaryHandGrabWeaponTarget;
+    [SerializeField] private Transform m_primaryHandGrabWeaponHint;
 
     private Dictionary<WeaponType, float> weaponAnimationMap;
 
@@ -143,10 +145,16 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void SwitchWeapon()
     {
-        m_secondHandGrabWeaponTarget.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTarget;
-        m_secondHandGrabWeaponTarget.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetRotation;
-        m_secondHandGrabWeaponHint.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHint;
-        m_secondHandGrabWeaponHint.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintRotation;
+        m_secondHandGrabWeaponTarget.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTarget.localPosition;
+        m_secondHandGrabWeaponTarget.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTarget.localRotation;
+        m_secondHandGrabWeaponHint.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHint.localPosition;
+        m_secondHandGrabWeaponHint.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHint.localRotation;
+
+        m_primaryHandGrabWeaponTarget.localPosition = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTarget.localPosition;
+        m_primaryHandGrabWeaponTarget.localRotation = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTarget.localRotation;
+        m_primaryHandGrabWeaponHint.localPosition = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHint.localPosition;
+        m_primaryHandGrabWeaponHint.localRotation = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHint.localRotation;
+
         m_animator.SetFloat("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
     }
 }
