@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,6 +85,12 @@ public class PlayerAnimationController : MonoBehaviour
 
         m_animator.SetFloat("Horizontal", roundedX, 0.1f, Time.deltaTime);
         m_animator.SetFloat("Vertical", roundedY, 0.1f, Time.deltaTime);
+    }
+
+    [Button]
+    private void LockAim()
+    {
+        PlayerInputs.Instance.OnSecondaryReleased -= StopAiming;
     }
 
     private void StartAiming()
