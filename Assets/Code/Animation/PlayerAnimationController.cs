@@ -92,6 +92,11 @@ public class PlayerAnimationController : MonoBehaviour
         StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0.7f, 0.25f));
         StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 1f, 0.05f));
         m_animator.SetBool("Aiming", true);
+        SetHandIK(
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetAim,
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintAim,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetAim,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintAim);
     }
 
     private void StopAiming()
@@ -100,6 +105,11 @@ public class PlayerAnimationController : MonoBehaviour
         StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0f, 0.25f));
         StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 0f, 0.25f));
         m_animator.SetBool("Aiming", false);
+        SetHandIK(
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetIdle,
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintIdle,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetIdle,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintIdle);
     }
 
     private IEnumerator ChangeRigWeightValueOverTime(MultiAimConstraint multiAimConstraint, float targetVal, float duration)
@@ -145,16 +155,25 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void SwitchWeapon()
     {
-        m_secondHandGrabWeaponTarget.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTarget.localPosition;
-        m_secondHandGrabWeaponTarget.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTarget.localRotation;
-        m_secondHandGrabWeaponHint.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHint.localPosition;
-        m_secondHandGrabWeaponHint.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHint.localRotation;
-
-        m_primaryHandGrabWeaponTarget.localPosition = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTarget.localPosition;
-        m_primaryHandGrabWeaponTarget.localRotation = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTarget.localRotation;
-        m_primaryHandGrabWeaponHint.localPosition = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHint.localPosition;
-        m_primaryHandGrabWeaponHint.localRotation = WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHint.localRotation;
+        SetHandIK(
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetIdle,
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintIdle,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetIdle,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintIdle);
 
         m_animator.SetFloat("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
+    }
+
+    private void SetHandIK(Transform secondHandTarget, Transform secondHandHint, Transform primaryHandTarget, Transform primaryHandHint)
+    {
+        m_secondHandGrabWeaponTarget.localPosition = secondHandTarget.localPosition;
+        m_secondHandGrabWeaponTarget.localRotation = secondHandTarget.localRotation;
+        m_secondHandGrabWeaponHint.localPosition = secondHandHint.localPosition;
+        m_secondHandGrabWeaponHint.localRotation = secondHandHint.localRotation;
+
+        m_primaryHandGrabWeaponTarget.localPosition = primaryHandTarget.localPosition;
+        m_primaryHandGrabWeaponTarget.localRotation = primaryHandTarget.localRotation;
+        m_primaryHandGrabWeaponHint.localPosition = primaryHandHint.localPosition;
+        m_primaryHandGrabWeaponHint.localRotation = primaryHandHint.localRotation;
     }
 }

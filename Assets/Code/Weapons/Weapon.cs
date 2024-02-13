@@ -41,11 +41,19 @@ public class Weapon : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     public Transform Barrel;
 
-    public Transform SecondHandGrabWeaponTarget;
-    public Transform SecondHandGrabWeaponHint;
+    [Header("IK Targeting - Idle")]
+    public Transform SecondHandGrabWeaponTargetIdle;
+    public Transform SecondHandGrabWeaponHintIdle;
 
-    public Transform PrimaryHandGrabWeaponTarget;
-    public Transform PrimaryHandGrabWeaponHint;
+    public Transform PrimaryHandGrabWeaponTargetIdle;
+    public Transform PrimaryHandGrabWeaponHintIdle;
+
+    [Header("IK Targeting - Aiming")]
+    public Transform SecondHandGrabWeaponTargetAim;
+    public Transform SecondHandGrabWeaponHintAim;
+
+    public Transform PrimaryHandGrabWeaponTargetAim;
+    public Transform PrimaryHandGrabWeaponHintAim;
 
     public event Action OnShoot;
     private ReloadAnimationEventBroadcaster m_reloadEventBroadcaster;

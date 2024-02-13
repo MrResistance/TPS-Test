@@ -1631,37 +1631,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4519663843527638, guid: 7f0b4051ed0c7104da43204b2ecb5c04, type: 3}
   m_PrefabInstance: {fileID: 32915487}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &33291034
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 33291035}
-  m_Layer: 0
-  m_Name: SecondHandGrabWeaponTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &33291035
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33291034}
-  m_LocalRotation: {x: 0.10735065, y: 0.99393207, z: -0.022799602, w: 0.007421168}
-  m_LocalPosition: {x: -0.0039, y: -0.0169, z: 0.0012}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2001372644}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -1.84, y: -271.40698, z: -282.96802}
 --- !u!1001 &34801226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7588,37 +7557,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4890769741274498, guid: e84635c9579383a409db6da3477e581d, type: 3}
   m_PrefabInstance: {fileID: 180407165}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &182506915
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 182506916}
-  m_Layer: 0
-  m_Name: PrimaryHandGrabWeaponHint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &182506916
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 182506915}
-  m_LocalRotation: {x: 0.00000013411045, y: -0, z: -0.000000059604645, w: 1}
-  m_LocalPosition: {x: -0.010600406, y: -0.013800288, z: 0.00009993369}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2085979911}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &185307734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21194,11 +21132,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4665376181210866, guid: aa510ff3d2aaac5429850d22a2941247, type: 3}
   m_PrefabInstance: {fileID: 478445097}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &478909413 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1888332846910851702, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-  m_PrefabInstance: {fileID: 5651408785949722391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &479498296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25244,37 +25177,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4604972532302222, guid: fc25b617fbcf5d54896247a2e6a0ad10, type: 3}
   m_PrefabInstance: {fileID: 582829699}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &585850002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 585850003}
-  m_Layer: 0
-  m_Name: PrimaryHandGrabWeaponTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &585850003
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585850002}
-  m_LocalRotation: {x: 0.23420179, y: 0.002049699, z: 0.0056980527, w: 0.97216916}
-  m_LocalPosition: {x: 0.0018, y: -0.1162, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2001372644}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 27.087, y: 0.428, z: 0.775}
 --- !u!1001 &586419142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32239,37 +32141,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4713333779746000, guid: 0d64cf1bb9d6db5458fc4331eed07b15, type: 3}
   m_PrefabInstance: {fileID: 743581026}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &745422851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 745422852}
-  m_Layer: 0
-  m_Name: PrimaryHandGrabWeaponTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &745422852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745422851}
-  m_LocalRotation: {x: 0.00000013411045, y: -0, z: -0.000000059604645, w: 1}
-  m_LocalPosition: {x: -0.010600406, y: -0.013800288, z: 0.00009993369}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2085979911}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &746729492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32699,37 +32570,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4713333779746000, guid: 0d64cf1bb9d6db5458fc4331eed07b15, type: 3}
   m_PrefabInstance: {fileID: 751618419}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &752613198
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 752613199}
-  m_Layer: 0
-  m_Name: SecondHandGrabWeaponHint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &752613199
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752613198}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.125, y: 0.196, z: 0.297}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2001372644}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &752651162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57231,37 +57071,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4646407613516282, guid: f996731b12085f44883c30318a77c3c8, type: 3}
   m_PrefabInstance: {fileID: 1320571810}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1320785122
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1320785123}
-  m_Layer: 0
-  m_Name: SecondHandGrabWeaponTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1320785123
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320785122}
-  m_LocalRotation: {x: 0.00000013411045, y: -0, z: -0.000000059604645, w: 1}
-  m_LocalPosition: {x: -0.010600406, y: -0.013800288, z: 0.00009993369}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2085979911}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1321089582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64944,11 +64753,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4232250064891754, guid: 1e3861f9ad1beae4eadd9ad081712f57, type: 3}
   m_PrefabInstance: {fileID: 1495252950}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1495330478 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3397599723662698669, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-  m_PrefabInstance: {fileID: 5651408785949722391}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1495472728
 PrefabInstance:
@@ -78780,37 +78584,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4232250064891754, guid: 1e3861f9ad1beae4eadd9ad081712f57, type: 3}
   m_PrefabInstance: {fileID: 1855244873}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1856882230
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1856882231}
-  m_Layer: 0
-  m_Name: SecondHandGrabWeaponHint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1856882231
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856882230}
-  m_LocalRotation: {x: 0.00000013411045, y: -0, z: -0.000000059604645, w: 1}
-  m_LocalPosition: {x: -0.010600406, y: -0.013800288, z: 0.00009993369}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2085979911}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1858171269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85275,11 +85048,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4333473186687566, guid: a900a769f8a4af141813881cb1eb838c, type: 3}
   m_PrefabInstance: {fileID: 2000904849}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2001372644 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5648210522072232475, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-  m_PrefabInstance: {fileID: 5651408785949722391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2002251052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88143,37 +87911,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4090057083578430, guid: f7dc8d1971098534588afce7d1a72784, type: 3}
   m_PrefabInstance: {fileID: 2061792396}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2062151106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2062151107}
-  m_Layer: 0
-  m_Name: PrimaryHandGrabWeaponHint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2062151107
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062151106}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2001372644}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2063108073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89523,11 +89260,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4211238800585630, guid: d470efb7df5223c46b0cfeb12c77f9cf, type: 3}
   m_PrefabInstance: {fileID: 2085647890}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2085979911 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5655624888222368732, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-  m_PrefabInstance: {fileID: 5651408785949722391}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2086404251
 PrefabInstance:
@@ -92072,22 +91804,18 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 876658297}
-    - target: {fileID: 388516390, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: SecondHandGrabWeaponHint
-      value: 
-      objectReference: {fileID: 752613199}
-    - target: {fileID: 388516390, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: PrimaryHandGrabWeaponHint
-      value: 
-      objectReference: {fileID: 2062151107}
-    - target: {fileID: 388516390, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: SecondHandGrabWeaponTarget
-      value: 
-      objectReference: {fileID: 33291035}
-    - target: {fileID: 388516390, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: PrimaryHandGrabWeaponTarget
-      value: 
-      objectReference: {fileID: 585850003}
+    - target: {fileID: 182506916, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.217
+      objectReference: {fileID: 0}
+    - target: {fileID: 182506916, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 182506916, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.008
+      objectReference: {fileID: 0}
     - target: {fileID: 1691714986, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
@@ -92096,14 +91824,6 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 876658297}
-    - target: {fileID: 95880590825671833, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: m_primaryHandGrabWeaponHint
-      value: 
-      objectReference: {fileID: 1495330478}
-    - target: {fileID: 95880590825671833, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: m_primaryHandGrabWeaponTarget
-      value: 
-      objectReference: {fileID: 478909413}
     - target: {fileID: 5649965969152578509, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: m_Name
       value: Player
@@ -92152,21 +91872,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6973848700498792461, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: SecondHandGrabWeaponHint
-      value: 
-      objectReference: {fileID: 1856882231}
-    - target: {fileID: 6973848700498792461, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: PrimaryHandGrabWeaponHint
-      value: 
-      objectReference: {fileID: 182506916}
-    - target: {fileID: 6973848700498792461, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: SecondHandGrabWeaponTarget
-      value: 
-      objectReference: {fileID: 1320785123}
-    - target: {fileID: 6973848700498792461, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
-      propertyPath: PrimaryHandGrabWeaponTarget
-      value: 
-      objectReference: {fileID: 745422852}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
