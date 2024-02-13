@@ -86,6 +86,37 @@ MonoBehaviour:
       x: 1
       y: 1
       z: 1
+--- !u!1 &917850626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917850627}
+  m_Layer: 0
+  m_Name: SecondHandGrabWeaponHint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &917850627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917850626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5648294750117380639}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938157554
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,44 +166,13 @@ MonoBehaviour:
     m_Root: {fileID: 5648459065576375879}
     m_Mid: {fileID: 5655957654759795195}
     m_Tip: {fileID: 5655905395198562661}
-    m_Target: {fileID: 5651408786128029386}
-    m_Hint: {fileID: 5651408785914803970}
+    m_Target: {fileID: 1850517334}
+    m_Hint: {fileID: 917850627}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
---- !u!1 &1080942736
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1080942737}
-  m_Layer: 0
-  m_Name: ShoulderMount
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1080942737
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080942736}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1523970754}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523970752
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +206,6 @@ Transform:
   - {fileID: 1691714985}
   - {fileID: 938157555}
   - {fileID: 126366830}
-  - {fileID: 1080942737}
   m_Father: {fileID: 5655758347019534585}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -310,6 +309,37 @@ MonoBehaviour:
       x: 1
       y: 1
       z: 1
+--- !u!1 &1850517333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1850517334}
+  m_Layer: 0
+  m_Name: SecondHandGrabWeaponTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1850517334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850517333}
+  m_LocalRotation: {x: 0.42584997, y: 0.5535141, z: 0.45442638, w: 0.5529653}
+  m_LocalPosition: {x: 0.4002, y: 0.1333, z: -0.0804}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5648294750117380639}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -1.84, y: -271.40698, z: -282.96802}
 --- !u!1 &1966515514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,8 +1425,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_animator: {fileID: 5708722347063298959}
+  m_rigBuilder: {fileID: 95880590825671835}
   m_bodyConstraint: {fileID: 1966515516}
   m_handAimConstraint: {fileID: 1691714986}
+  m_secondHandGrabWeapon: {fileID: 938157556}
+  m_secondHandGrabWeaponTarget: {fileID: 1850517334}
+  m_secondHandGrabWeaponHint: {fileID: 917850627}
 --- !u!114 &95880590825671834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1871,6 +1905,8 @@ Transform:
   - {fileID: 5655811077814855475}
   - {fileID: 5648210522072232475}
   - {fileID: 5655624888222368732}
+  - {fileID: 1850517334}
+  - {fileID: 917850627}
   m_Father: {fileID: 5648511144846881607}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4346,7 +4382,7 @@ GameObject:
   - component: {fileID: 5651408785162550310}
   - component: {fileID: 5651408785162550311}
   - component: {fileID: 5651408785162550329}
-  - component: {fileID: 5651408785949722393}
+  - component: {fileID: 3146518714253260440}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -4428,7 +4464,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5651408785162550330}
   m_Enabled: 1
---- !u!114 &5651408785949722393
+--- !u!114 &3146518714253260440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5000,6 +5036,46 @@ PrefabInstance:
       propertyPath: m_animator
       value: 
       objectReference: {fileID: 1094802720}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponHint.x
+      value: 0.6367
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponHint.y
+      value: 0.212
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponHint.z
+      value: -0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponTarget.x
+      value: 0.4002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponTarget.y
+      value: 0.1333
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponTarget.z
+      value: -0.0804
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponTargetRotation.w
+      value: 0.5529653
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponTargetRotation.x
+      value: 0.42584997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponTargetRotation.y
+      value: 0.5535141
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361303977607649519, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      propertyPath: SecondHandGrabWeaponTargetRotation.z
+      value: 0.45442638
+      objectReference: {fileID: 0}
     - target: {fileID: 6779362229062663497, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -5133,16 +5209,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6779362229062663497, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
   m_PrefabInstance: {fileID: 5651408785997400290}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5651408785914803970 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 488423392, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
-  m_PrefabInstance: {fileID: 5651408785997400290}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5651408786128029386 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 139152936, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
-  m_PrefabInstance: {fileID: 5651408785997400290}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5651566660219540186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1042019584973368, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
@@ -5216,15 +5282,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415442749456168, guid: 68317e2c4c57a6e45be7063240f91cbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.1026
       objectReference: {fileID: 0}
     - target: {fileID: 4415442749456168, guid: 68317e2c4c57a6e45be7063240f91cbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0.0276
       objectReference: {fileID: 0}
     - target: {fileID: 4415442749456168, guid: 68317e2c4c57a6e45be7063240f91cbb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: -0.0205
       objectReference: {fileID: 0}
     - target: {fileID: 4415442749456168, guid: 68317e2c4c57a6e45be7063240f91cbb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5277,7 +5343,7 @@ Animator:
   m_GameObject: {fileID: 5649917495823710509}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3214023fb25b0d04898f15afb881bb55, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5307,10 +5373,28 @@ MonoBehaviour:
   m_hitForce: 0
   m_damage: 0
   m_effectiveRange: 0
-  m_animator: {fileID: 0}
+  m_animator: {fileID: 371172933740469742}
   m_gunshotFX: {fileID: 5524934979734386895}
   lineRenderer: {fileID: 1821277596}
   Barrel: {fileID: 5655785115470172609}
+  SecondHandGrabWeaponTarget: {x: 0.065, y: 0.149, z: 0.009}
+  SecondHandGrabWeaponTargetRotation: {x: 0.48873207, y: 0.87222135, z: -0.0053593796, w: -0.018498816}
+  SecondHandGrabWeaponHint: {x: -0.235, y: 0.55, z: 0.294}
+  SecondHandGrabWeaponHintRotation: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5651408785949722393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5649917495823710509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2a5ab7a19eb7940947780b4711a60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_weapon: {fileID: 388516390}
+  m_rayFromBarrel: 0
 --- !u!1001 &5651408786292767375
 PrefabInstance:
   m_ObjectHideFlags: 0

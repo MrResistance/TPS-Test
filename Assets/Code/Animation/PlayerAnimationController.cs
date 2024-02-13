@@ -9,9 +9,10 @@ public class PlayerAnimationController : MonoBehaviour
 
     [SerializeField] private MultiAimConstraint m_bodyConstraint;
     [SerializeField] private MultiAimConstraint m_handAimConstraint;
+    [SerializeField] private TwoBoneIKConstraint m_secondHandGrabWeapon;
 
-    [SerializeField] private Transform secondHandGrabWeaponHint;
-    [SerializeField] private Transform secondHandGrabWeaponTarget;
+    [SerializeField] private Transform m_secondHandGrabWeaponTarget;
+    [SerializeField] private Transform m_secondHandGrabWeaponHint;
 
     private Dictionary<WeaponType, float> weaponAnimationMap;
 
@@ -142,8 +143,10 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void SwitchWeapon()
     {
-        secondHandGrabWeaponHint.SetParent(WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintSocket, false);
-        secondHandGrabWeaponTarget.SetParent(WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetSocket, false);
+        m_secondHandGrabWeaponTarget.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTarget;
+        m_secondHandGrabWeaponTarget.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetRotation;
+        m_secondHandGrabWeaponHint.localPosition = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHint;
+        m_secondHandGrabWeaponHint.localRotation = WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintRotation;
         m_animator.SetFloat("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
     }
 }

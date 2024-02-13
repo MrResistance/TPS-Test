@@ -108,13 +108,13 @@ public class WeaponRig : MonoBehaviour
 
         m_currentWeapon = m_weapons[m_currentWeaponLocation];
         CurrentWeaponSetup();
-        OnWeaponChanged?.Invoke();
     }
 
     private void CurrentWeaponSetup()
     {
         m_currentWeapon.gameObject.SetActive(true);
         UpdateAmmoCounterMethod();
+        OnWeaponChanged?.Invoke();
     }
 
     public void UpdateAmmoCounterMethod()

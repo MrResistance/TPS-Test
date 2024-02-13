@@ -40,8 +40,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] private ParticleSystem m_gunshotFX;
     [SerializeField] private LineRenderer lineRenderer;
     public Transform Barrel;
-    public Transform SecondHandGrabWeaponHintSocket;
-    public Transform SecondHandGrabWeaponTargetSocket;
+    public Vector3 SecondHandGrabWeaponTarget;
+    public Quaternion SecondHandGrabWeaponTargetRotation;
+    public Vector3 SecondHandGrabWeaponHint;
+    public Quaternion SecondHandGrabWeaponHintRotation;
 
     public event Action OnShoot;
     private ReloadAnimationEventBroadcaster m_reloadEventBroadcaster;
