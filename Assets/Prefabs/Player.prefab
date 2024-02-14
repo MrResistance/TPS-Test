@@ -61,7 +61,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1523970754}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &126366831
 MonoBehaviour:
@@ -465,7 +465,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1523970754}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &938157556
 MonoBehaviour:
@@ -716,9 +716,9 @@ Transform:
   m_Children:
   - {fileID: 1966515515}
   - {fileID: 1691714985}
+  - {fileID: 126366830}
   - {fileID: 938157555}
   - {fileID: 7440154206748220367}
-  - {fileID: 126366830}
   m_Father: {fileID: 5655758347019534585}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5755,7 +5755,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1523970754}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5888937727342633221
 MonoBehaviour:
@@ -6231,7 +6231,6 @@ MonoBehaviour:
   m_effectiveRange: 0
   m_animator: {fileID: 371172933740469742}
   m_gunshotFX: {fileID: 5524934979734386895}
-  lineRenderer: {fileID: 1821277596}
   Barrel: {fileID: 5655785115470172609}
   SecondHandGrabWeaponTargetIdle: {fileID: 33291035}
   SecondHandGrabWeaponHintIdle: {fileID: 752613199}

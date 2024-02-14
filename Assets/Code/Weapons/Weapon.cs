@@ -38,7 +38,6 @@ public class Weapon : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator m_animator;
     [SerializeField] private ParticleSystem m_gunshotFX;
-    [SerializeField] private LineRenderer lineRenderer;
     public Transform Barrel;
 
     [Header("IK Targeting - Idle")]
