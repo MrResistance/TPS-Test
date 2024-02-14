@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputs : MonoBehaviour
 {
+    public static PlayerInputs Instance { get; private set; }
+
     public event Action OnPrimaryPressed;
     public event Action OnPrimaryHeld;
     public event Action OnPrimaryReleased;
@@ -19,7 +21,9 @@ public class PlayerInputs : MonoBehaviour
 
     public PlayerControls controls;
 
-    public static PlayerInputs Instance { get; private set; }
+    private Gamepad gamepad;
+
+    
     private void Awake()
     {
         if (Instance == null)
@@ -30,6 +34,12 @@ public class PlayerInputs : MonoBehaviour
         {
             Destroy(this);
         }
+
+        if (Gamepad.current != null)
+        {
+            gamepad = Gamepad.current;
+        }
+
         controls = new PlayerControls();
 
         controls.Actions.Primary.performed += PrimaryPressed;
@@ -132,4 +142,18 @@ public class PlayerInputs : MonoBehaviour
             OnSecondaryHeld?.Invoke();
         }
     }
+
+    #region Haptics
+
+    public void StartHapticFeedback(float intensity, float frequency)
+    {
+        gamepad.SetMotorSpeeds(intensity, frequency);
+    }
+
+    public void StopHapticFeedback()
+    {
+        gamepad.SetMotorSpeeds(0, 0);
+    }
+
+    #endregion
 }

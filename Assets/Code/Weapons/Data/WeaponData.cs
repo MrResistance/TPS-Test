@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
     [Header("Settings")]
     public FireMode FireMode;
     public WeaponType WeaponType;
+    public float HapticShotStrength;
 
     [Header("Stats")]
     public float HitForce;

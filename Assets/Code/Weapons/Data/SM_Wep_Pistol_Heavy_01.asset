@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Desert Eagle
   FireMode: 0
+  WeaponType: 0
+  HapticShotStrength: 0.6
   HitForce: 200
   Damage: 10
   EffectiveRange: 100

@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Assault Rifle
   FireMode: 1
   WeaponType: 1
+  HapticShotStrength: 0.5
   HitForce: 100
   Damage: 10
   EffectiveRange: 300

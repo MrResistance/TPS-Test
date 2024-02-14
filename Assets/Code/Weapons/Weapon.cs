@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
     public int m_damage;
     public int m_effectiveRange;
     private float m_fireRateCooldown;
+    private float m_hapticShotStrength;
 
     //Ammo
     private int m_maxClipSize;
@@ -257,6 +258,7 @@ public class Weapon : MonoBehaviour
             OnShoot?.Invoke();
 
             WeaponRig.Instance.UpdateAmmoCounterMethod();
+            PlayerInputs.Instance.StartHapticFeedback(m_hapticShotStrength, m_fireRateCooldown / 2);
 
             //PlayRandomSFX(m_shot);
         }
@@ -264,6 +266,7 @@ public class Weapon : MonoBehaviour
     
     protected void StopShooting()
     {
+        PlayerInputs.Instance.StopHapticFeedback();
         m_currentlyShooting = false;
         m_gunshotFX.Stop();
     }
@@ -281,6 +284,7 @@ public class Weapon : MonoBehaviour
     {
         WeaponFireMode = m_weaponData.FireMode;
         WeaponType = m_weaponData.WeaponType;
+        m_hapticShotStrength = m_weaponData.HapticShotStrength;
         m_hitForce = m_weaponData.HitForce;
         m_damage = m_weaponData.Damage;
         m_effectiveRange = m_weaponData.EffectiveRange;
