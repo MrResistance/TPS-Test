@@ -19,5 +19,4 @@ public class TargetDummy : MonoBehaviour
     {
         m_hingeJoint.useSpring = false;
     }
-
 }

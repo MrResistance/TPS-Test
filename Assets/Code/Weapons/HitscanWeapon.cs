@@ -83,6 +83,11 @@ public class HitscanWeapon : MonoBehaviour
                 SurfaceType hitSurfaceType = surfaceIdentifier.surfaceType;
                 ObjectPooler.Instance.SpawnEffect(hitSurfaceType, m_weapon.m_raycastHit.point, m_weapon.m_raycastHit.transform.rotation);
             }
+
+            if (m_weapon.m_raycastHit.collider.TryGetComponent(out TargetDummy dummy))
+            {
+                dummy.MoveTargetDown();
+            }
         }
     }
 }
