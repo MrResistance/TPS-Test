@@ -551,6 +551,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 931989285}
     m_Modifications:
+    - target: {fileID: 808739373, guid: b89fe3f03a968ea40b750113555e1169, type: 3}
+      propertyPath: m_UseSpring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 808739373, guid: b89fe3f03a968ea40b750113555e1169, type: 3}
+      propertyPath: m_Spring.spring
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 1301019947510714, guid: b89fe3f03a968ea40b750113555e1169, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Target_01
@@ -629,7 +637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_hingeJoint: {fileID: 808739373}
-  m_downwardSpringForce: 200
 --- !u!1001 &847577483
 PrefabInstance:
   m_ObjectHideFlags: 0
