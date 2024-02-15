@@ -23,7 +23,7 @@ public class PlayerInputs : MonoBehaviour
 
     private Gamepad gamepad;
 
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -147,12 +147,12 @@ public class PlayerInputs : MonoBehaviour
 
     public void StartHapticFeedback(float intensity, float frequency)
     {
-        gamepad.SetMotorSpeeds(intensity, frequency);
+        gamepad?.SetMotorSpeeds(intensity, frequency);
     }
 
     public void StopHapticFeedback()
     {
-        gamepad.SetMotorSpeeds(0, 0);
+        gamepad?.SetMotorSpeeds(0, 0);
     }
 
     #endregion

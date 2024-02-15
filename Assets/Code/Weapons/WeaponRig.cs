@@ -37,6 +37,7 @@ public class WeaponRig : MonoBehaviour
     #region Event Subscriptions
     private void Start()
     {
+        PlayerInputs.Instance.OnSelect -= SelectWeapon;
         PlayerInputs.Instance.OnSelect += SelectWeapon;
         InitialiseWeapons();
     }

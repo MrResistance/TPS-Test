@@ -16,7 +16,7 @@ MonoBehaviour:
   FireMode: 0
   WeaponType: 0
   HapticShotStrength: 0.6
-  HitForce: 200
+  HitForce: 10000
   Damage: 10
   EffectiveRange: 100
   FireRateCooldown: 0.5
