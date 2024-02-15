@@ -8,6 +8,7 @@ public class ScreenspaceUIManager : MonoBehaviour
 
     [SerializeField] private Image m_crosshair;
     [SerializeField] private TextMeshProUGUI m_ammoCounterText;
+    [SerializeField] private TextMeshProUGUI m_interactText;
 
     private void Awake()
     {
@@ -84,5 +85,15 @@ public class ScreenspaceUIManager : MonoBehaviour
     public void UpdateAmmoCounterText(int currentClip, int reserveAmmo)
     {
         m_ammoCounterText.text = currentClip.ToString() + " / " + reserveAmmo.ToString();
+    }
+
+    public void UpdateInteractText(string text)
+    {
+        m_interactText.text = text;
+    }
+
+    public void ClearInteractText()
+    {
+        m_interactText.text = "";
     }
 }

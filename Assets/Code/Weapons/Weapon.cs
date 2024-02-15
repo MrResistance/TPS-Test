@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponData m_weaponData;
+    public WeaponData WeaponData => m_weaponData;
 
     [Header("Settings")]
     public bool WeaponUnlocked;
@@ -282,6 +283,7 @@ public class Weapon : MonoBehaviour
 
     protected void GetWeaponData(bool start)
     {
+        gameObject.name = m_weaponData.Name;
         WeaponFireMode = m_weaponData.FireMode;
         WeaponType = m_weaponData.WeaponType;
         m_hapticShotStrength = m_weaponData.HapticShotStrength;

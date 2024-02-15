@@ -12,6 +12,9 @@ public class PlayerInputs : MonoBehaviour
     public event Action OnSecondaryPressed;
     public event Action OnSecondaryHeld;
     public event Action OnSecondaryReleased;
+    public event Action OnInteractPressed;
+    public event Action OnInteractHeld;
+    public event Action OnInteractReleased;
     public event Action OnReload;
     public event Action OnJump;
     public event Action<bool> OnSelect;
@@ -46,6 +49,8 @@ public class PlayerInputs : MonoBehaviour
         controls.Actions.Primary.canceled += PrimaryReleased;
         controls.Actions.Secondary.performed += SecondaryPressed;
         controls.Actions.Secondary.canceled += SecondaryReleased;
+        controls.Actions.Interact.performed += InteractPressed;
+        controls.Actions.Interact.canceled += InteractReleased;
         controls.Actions.Reload.performed += Reload;
         controls.Actions.Jump.performed += Jump;
         controls.Actions.Select.performed += Select;
@@ -88,6 +93,15 @@ public class PlayerInputs : MonoBehaviour
     private void SecondaryReleased(InputAction.CallbackContext context)
     {
         OnSecondaryReleased?.Invoke();
+    }
+
+    private void InteractPressed(InputAction.CallbackContext context)
+    {
+        OnInteractPressed?.Invoke();
+    }
+    private void InteractReleased(InputAction.CallbackContext context)
+    {
+        OnInteractReleased?.Invoke();
     }
 
     private void Reload(InputAction.CallbackContext context)
@@ -140,6 +154,11 @@ public class PlayerInputs : MonoBehaviour
         if (controls.Actions.Secondary.phase == InputActionPhase.Performed)
         {
             OnSecondaryHeld?.Invoke();
+        }
+
+        if (controls.Actions.Interact.phase == InputActionPhase.Performed)
+        {
+            OnInteractHeld?.Invoke();
         }
     }
 
