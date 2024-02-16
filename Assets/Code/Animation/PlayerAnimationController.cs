@@ -27,7 +27,7 @@ public class PlayerAnimationController : MonoBehaviour
         InitialiseWeaponTypeDictionary();
         WeaponRig.Instance.OnWeaponChanged += SwitchWeapon;
 
-        if (WeaponRig.Instance.GetCurrentWeapons().Count > 0)
+        if (WeaponRig.Instance.UnlockedWeapons.Count > 0)
         {
             Armed();
         }

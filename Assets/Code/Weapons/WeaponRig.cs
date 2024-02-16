@@ -7,6 +7,9 @@ public class WeaponRig : MonoBehaviour
 {
     public static WeaponRig Instance;
 
+    [Header("Settings")]
+    public int MaxWeaponsInInventory = 2;
+
     [Header("References")]
     public Weapon m_currentWeapon;
     [Tooltip("This is the transform that is parent to the weapon gameobjects."),
@@ -14,9 +17,12 @@ public class WeaponRig : MonoBehaviour
     public Weapon CurrentWeapon => m_currentWeapon;
     public AudioSource AudioSource;
 
-    [Header("Current Weapons List")]
+    [Header("Weapons List")]
     [SerializeField] private List<Weapon> m_weapons;
+    public List<Weapon> Weapons => m_weapons;
+    [Header("Currently Unlocked Weapons List")]
     [SerializeField] private List<Weapon> m_unlockedWeapons;
+    public List<Weapon> UnlockedWeapons => m_unlockedWeapons;
     [SerializeField] private int m_currentWeaponLocation;
 
     public event Action<int, int> UpdateAmmoCounter;
@@ -130,12 +136,14 @@ public class WeaponRig : MonoBehaviour
             }
         }
 
-        Debug.Log("WeaponData is " + weaponData.Name + ", Attempting to set " + weaponToSet.name);
         if (CurrentWeapon != null)
         {
             CurrentWeapon.gameObject.SetActive(false);
-            CurrentWeapon.WeaponUnlocked = false;
-            m_unlockedWeapons.Remove(CurrentWeapon);
+            if (m_unlockedWeapons.Count == MaxWeaponsInInventory)
+            {
+                CurrentWeapon.WeaponUnlocked = false;
+                m_unlockedWeapons.Remove(CurrentWeapon);
+            }
         }
 
         m_unlockedWeapons.Add(weaponToSet);
@@ -158,10 +166,5 @@ public class WeaponRig : MonoBehaviour
         {
             UpdateAmmoCounter?.Invoke(m_currentWeapon.CurrentAmmoInClip, m_currentWeapon.CurrentReserveAmmo);
         }
-    }
-
-    public List<Weapon> GetCurrentWeapons()
-    {
-        return m_weapons;
     }
 }

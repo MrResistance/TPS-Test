@@ -6,11 +6,11 @@ public class CollectableWeapon : Collectable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (WeaponRig.Instance.CurrentWeapon != null)
+        if (WeaponRig.Instance.CurrentWeapon != null && WeaponRig.Instance.UnlockedWeapons.Count == WeaponRig.Instance.MaxWeaponsInInventory)
         {
             ScreenspaceUIManager.Instance.UpdateInteractText("Press <color=yellow><b>F</b></color> to swap " + WeaponRig.Instance.CurrentWeapon.name + " for " + m_weaponData.Name);
         }
-        else
+        else if (WeaponRig.Instance.UnlockedWeapons.Count != WeaponRig.Instance.MaxWeaponsInInventory)
         {
             ScreenspaceUIManager.Instance.UpdateInteractText("Press <color=yellow><b>F</b></color> to pick up " + m_weaponData.Name);
         }
@@ -25,7 +25,7 @@ public class CollectableWeapon : Collectable
 
     private void CollectWeapon()
     {
-        if (WeaponRig.Instance.CurrentWeapon != null)
+        if (WeaponRig.Instance.CurrentWeapon != null && WeaponRig.Instance.UnlockedWeapons.Count == WeaponRig.Instance.MaxWeaponsInInventory)
         {
             SpawnReplacementWeaponCollectable();
         }
