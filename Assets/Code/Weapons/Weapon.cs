@@ -8,8 +8,6 @@ public class Weapon : MonoBehaviour
     public WeaponData WeaponData => m_weaponData;
 
     [Header("Settings")]
-    public bool WeaponUnlocked;
-
     public FireMode WeaponFireMode;
     public WeaponType WeaponType;
 
@@ -299,5 +297,10 @@ public class Weapon : MonoBehaviour
             m_currentAmmoInClip = m_weaponData.MaxClipSize;
             m_currentReserveAmmo = m_weaponData.CurrentReserveAmmo;
         }
+    }
+
+    public void DestroyWeapon()
+    {
+        Destroy(gameObject);
     }
 }

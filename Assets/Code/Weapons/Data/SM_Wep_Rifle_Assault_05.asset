@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SM_Wep_Rifle_Assault_05
   m_EditorClassIdentifier: 
   Name: Assault Rifle
+  UsablePrefabFilePath: Prefabs/Weapons/SM_Wep_Rifle_Assault_05
   CollectablePrefabFilePath: Prefabs/Collectables/SM_Wep_Rifle_Assault_05
   FireMode: 1
   WeaponType: 1

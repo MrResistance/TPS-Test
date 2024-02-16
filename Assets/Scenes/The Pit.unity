@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press <color=yellow><b>F</b></color>  to pay respects
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -850,7 +850,7 @@ PrefabInstance:
       objectReference: {fileID: 1269831488}
     - target: {fileID: 5649917495823710509, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5649965969152578509, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: m_Name
@@ -859,6 +859,10 @@ PrefabInstance:
     - target: {fileID: 5651408785949722389, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: WeaponUnlocked
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651566660219540186, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5655758347019534585, guid: 9068de3bb951e6647b5d354b0ff99986, type: 3}
       propertyPath: m_RootOrder
@@ -1743,7 +1747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6741333c5e22af34cbb53d9ccaafc7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxWeaponsInInventory: 2
+  MaxWeaponsInInventory: 2
   m_currentWeapon: {fileID: 0}
   m_weaponHand: {fileID: 680888466}
   AudioSource: {fileID: 0}

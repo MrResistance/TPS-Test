@@ -13,13 +13,11 @@ public class WeaponRig : MonoBehaviour
     [Header("References")]
     public Weapon m_currentWeapon;
     [Tooltip("This is the transform that is parent to the weapon gameobjects."),
-        SerializeField] private Transform m_weaponHand;
+        SerializeField]
+    private Transform m_weaponHand;
     public Weapon CurrentWeapon => m_currentWeapon;
     public AudioSource AudioSource;
 
-    [Header("Weapons List")]
-    [SerializeField] private List<Weapon> m_weapons;
-    public List<Weapon> Weapons => m_weapons;
     [Header("Currently Unlocked Weapons List")]
     [SerializeField] private List<Weapon> m_unlockedWeapons;
     public List<Weapon> UnlockedWeapons => m_unlockedWeapons;
@@ -73,11 +71,7 @@ public class WeaponRig : MonoBehaviour
         {
             if (m_weaponHand.GetChild(i).TryGetComponent(out Weapon weapon))
             {
-                if (weapon.WeaponUnlocked)
-                {
-                    m_unlockedWeapons.Add(weapon);
-                }
-                m_weapons.Add(weapon);
+                m_unlockedWeapons.Add(weapon);
                 weapon.gameObject.SetActive(false);
             }
         }
@@ -125,36 +119,42 @@ public class WeaponRig : MonoBehaviour
 
     public void SetWeapon(WeaponData weaponData)
     {
-        Weapon weaponToSet = null;
-
-        for (int i = 0; i < m_weapons.Count; i++)
+        if (UnlockedWeapons.Count == MaxWeaponsInInventory)
         {
-            if (m_weapons[i].WeaponData == weaponData)
-            {
-                weaponToSet = m_weapons[i];
-                break;
-            }
+            m_unlockedWeapons.Remove(CurrentWeapon);
+            CurrentWeapon.DestroyWeapon();
         }
-
+        
         if (CurrentWeapon != null)
         {
-            CurrentWeapon.gameObject.SetActive(false);
-            if (m_unlockedWeapons.Count == MaxWeaponsInInventory)
-            {
-                CurrentWeapon.WeaponUnlocked = false;
-                m_unlockedWeapons.Remove(CurrentWeapon);
-            }
+            m_currentWeapon.gameObject.SetActive(false);
         }
 
-        m_unlockedWeapons.Add(weaponToSet);
-        m_currentWeapon = weaponToSet;
-        m_currentWeapon.WeaponUnlocked = true;
-        m_currentWeaponLocation = m_weapons.IndexOf(m_currentWeapon);
+        string prefabPath = weaponData.UsablePrefabFilePath;
+        GameObject prefab = Resources.Load<GameObject>(prefabPath);
+        if (prefab != null)
+        {
+            var obj = Instantiate(prefab, m_weaponHand.transform.position, Quaternion.identity, m_weaponHand);
+            Weapon weapon = obj.GetComponent<Weapon>();
+            m_currentWeapon = weapon;
+            m_currentWeaponLocation = m_unlockedWeapons.IndexOf(m_currentWeapon);
+            m_unlockedWeapons.Add(weapon);
+        }
+        else
+        {
+            Debug.LogError("Prefab not found at path: " + prefabPath);
+        }
+        
         CurrentWeaponSetup();
     }
 
     private void CurrentWeaponSetup()
     {
+        if (CurrentWeapon != null)
+        {
+            m_currentWeaponLocation = m_unlockedWeapons.IndexOf(m_currentWeapon);
+        }
+
         CurrentWeapon.gameObject.SetActive(true);
         UpdateAmmoCounterMethod();
         OnWeaponChanged?.Invoke();
