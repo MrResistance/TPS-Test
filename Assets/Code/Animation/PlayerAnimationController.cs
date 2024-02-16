@@ -110,8 +110,8 @@ public class PlayerAnimationController : MonoBehaviour
     {
         weaponAnimationMap = new Dictionary<WeaponType, float>()
         {
-            { WeaponType.pistol, 0 },
-            { WeaponType.assaultRifle, 1 },
+            { WeaponType.pistol, 1 },
+            { WeaponType.assaultRifle, 2 },
             // Map new weapon types to their animation IDs here
         };
     }
@@ -124,7 +124,14 @@ public class PlayerAnimationController : MonoBehaviour
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetIdle,
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintIdle);
 
-        m_animator.SetFloat("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
+        if (WeaponRig.Instance.CurrentWeapon == null)
+        {
+            m_animator.SetFloat("WeaponType", 0);
+        }
+        else
+        {
+            m_animator.SetFloat("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
+        }
     }
 
     private void SetHandIK(Transform secondHandTarget, Transform secondHandHint, Transform primaryHandTarget, Transform primaryHandHint)
