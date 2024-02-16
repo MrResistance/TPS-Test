@@ -134,7 +134,7 @@ public class WeaponRig : MonoBehaviour
         GameObject prefab = Resources.Load<GameObject>(prefabPath);
         if (prefab != null)
         {
-            var obj = Instantiate(prefab, m_weaponHand.transform.position, Quaternion.identity, m_weaponHand);
+            var obj = Instantiate(prefab, m_weaponHand);
             Weapon weapon = obj.GetComponent<Weapon>();
             m_currentWeapon = weapon;
             m_currentWeaponLocation = m_unlockedWeapons.IndexOf(m_currentWeapon);
