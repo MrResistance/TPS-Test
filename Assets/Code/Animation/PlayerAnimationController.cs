@@ -26,6 +26,15 @@ public class PlayerAnimationController : MonoBehaviour
         PlayerInputs.Instance.OnSecondaryReleased += StopAiming;
         InitialiseWeaponTypeDictionary();
         WeaponRig.Instance.OnWeaponChanged += SwitchWeapon;
+
+        if (WeaponRig.Instance.GetCurrentWeapons().Count > 0)
+        {
+            Armed();
+        }
+        else
+        {
+            Unarmed();
+        }
     }
 
     // Update is called once per frame
@@ -43,6 +52,20 @@ public class PlayerAnimationController : MonoBehaviour
         m_animator.SetFloat("Vertical", y, 0.1f, Time.deltaTime);
     }
 
+    private void Unarmed()
+    {
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 0);
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 0);
+        m_secondHandGrabWeapon.weight = 0;
+    }
+
+    private void Armed()
+    {
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 1);
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 1);
+        m_secondHandGrabWeapon.weight = 1;
+    }
+
     [Button]
     private void LockAim()
     {
@@ -55,11 +78,14 @@ public class PlayerAnimationController : MonoBehaviour
         StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0.7f, 0.25f));
         StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 1f, 0.05f));
         m_animator.SetBool("Aiming", true);
-        SetHandIK(
+        if (WeaponRig.Instance.CurrentWeapon != null)
+        {
+            SetHandIK(
             WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetAim,
             WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintAim,
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetAim,
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintAim);
+        }
     }
 
     private void StopAiming()
@@ -68,11 +94,14 @@ public class PlayerAnimationController : MonoBehaviour
         StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0f, 0.25f));
         StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 0f, 0.25f));
         m_animator.SetBool("Aiming", false);
-        SetHandIK(
+        if (WeaponRig.Instance.CurrentWeapon != null)
+        {
+            SetHandIK(
             WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetIdle,
             WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintIdle,
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetIdle,
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintIdle);
+        }
     }
 
     private IEnumerator ChangeRigWeightValueOverTime(MultiAimConstraint multiAimConstraint, float targetVal, float duration)
@@ -110,6 +139,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         weaponAnimationMap = new Dictionary<WeaponType, float>()
         {
+            // Start with 1 because 0 is unarmed in the animator, but not a "Weapon Type" so it doesn't need a value here
             { WeaponType.pistol, 1 },
             { WeaponType.assaultRifle, 2 },
             // Map new weapon types to their animation IDs here
@@ -118,19 +148,20 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void SwitchWeapon()
     {
-        SetHandIK(
-            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetIdle,
-            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintIdle,
-            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetIdle,
-            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintIdle);
-
         if (WeaponRig.Instance.CurrentWeapon == null)
         {
             m_animator.SetFloat("WeaponType", 0);
+            Unarmed();
         }
         else
         {
             m_animator.SetFloat("WeaponType", weaponAnimationMap[WeaponRig.Instance.CurrentWeapon.WeaponType]);
+            Armed();
+            SetHandIK(
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponTargetIdle,
+            WeaponRig.Instance.CurrentWeapon.SecondHandGrabWeaponHintIdle,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetIdle,
+            WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintIdle);
         }
     }
 

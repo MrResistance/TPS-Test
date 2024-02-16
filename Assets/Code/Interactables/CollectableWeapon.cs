@@ -6,7 +6,14 @@ public class CollectableWeapon : Collectable
 
     private void OnTriggerEnter(Collider other)
     {
-        ScreenspaceUIManager.Instance.UpdateInteractText("Press <color=yellow><b>F</b></color> to swap " + WeaponRig.Instance.CurrentWeapon.name + " for " + m_weaponData.Name);
+        if (WeaponRig.Instance.CurrentWeapon != null)
+        {
+            ScreenspaceUIManager.Instance.UpdateInteractText("Press <color=yellow><b>F</b></color> to swap " + WeaponRig.Instance.CurrentWeapon.name + " for " + m_weaponData.Name);
+        }
+        else
+        {
+            ScreenspaceUIManager.Instance.UpdateInteractText("Press <color=yellow><b>F</b></color> to pick up " + m_weaponData.Name);
+        }
         PlayerInputs.Instance.OnInteractPressed += CollectWeapon;
     }
 
@@ -18,13 +25,14 @@ public class CollectableWeapon : Collectable
 
     private void CollectWeapon()
     {
-        if (WeaponRig.Instance.CurrentWeapon.name != m_weaponData.name)
+        if (WeaponRig.Instance.CurrentWeapon != null)
         {
             SpawnReplacementWeaponCollectable();
-            WeaponRig.Instance.SetWeapon(m_weaponData);
-            ScreenspaceUIManager.Instance.ClearInteractText();
-            DestroyWeapon();
         }
+
+        WeaponRig.Instance.SetWeapon(m_weaponData);
+        ScreenspaceUIManager.Instance.ClearInteractText();
+        DestroyWeapon();
     }
 
     private void DestroyWeapon()

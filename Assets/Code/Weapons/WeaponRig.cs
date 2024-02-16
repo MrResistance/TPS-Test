@@ -131,9 +131,12 @@ public class WeaponRig : MonoBehaviour
         }
 
         Debug.Log("WeaponData is " + weaponData.Name + ", Attempting to set " + weaponToSet.name);
-        CurrentWeapon.gameObject.SetActive(false);
-        CurrentWeapon.WeaponUnlocked = false;
-        m_unlockedWeapons.Remove(CurrentWeapon);
+        if (CurrentWeapon != null)
+        {
+            CurrentWeapon.gameObject.SetActive(false);
+            CurrentWeapon.WeaponUnlocked = false;
+            m_unlockedWeapons.Remove(CurrentWeapon);
+        }
 
         m_unlockedWeapons.Add(weaponToSet);
         m_currentWeapon = weaponToSet;
