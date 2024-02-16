@@ -12,16 +12,15 @@ public class CollectableWeapon : Collectable
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Leaving " + m_weaponData.Name + " range.");
         ScreenspaceUIManager.Instance.ClearInteractText();
         PlayerInputs.Instance.OnInteractPressed -= CollectWeapon;
     }
 
     private void CollectWeapon()
     {
-        Debug.Log("Attempting to collect " + m_weaponData.Name + "...");
         if (WeaponRig.Instance.CurrentWeapon.name != m_weaponData.name)
         {
+            SpawnReplacementWeaponCollectable();
             WeaponRig.Instance.SetWeapon(m_weaponData);
             ScreenspaceUIManager.Instance.ClearInteractText();
             DestroyWeapon();
@@ -32,5 +31,19 @@ public class CollectableWeapon : Collectable
     {
         PlayerInputs.Instance.OnInteractPressed -= CollectWeapon;
         Destroy(gameObject);
+    }
+
+    private void SpawnReplacementWeaponCollectable()
+    {
+        string prefabPath = WeaponRig.Instance.CurrentWeapon.WeaponData.CollectablePrefabFilePath;
+        GameObject prefab = Resources.Load<GameObject>(prefabPath);
+        if (prefab != null)
+        {
+            Instantiate(prefab, transform.position, transform.rotation);
+        }
+        else
+        {
+            Debug.LogError("Prefab not found at path: " + prefabPath);
+        }
     }
 }

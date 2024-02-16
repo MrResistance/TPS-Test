@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SM_Wep_Pistol_Heavy_01
   m_EditorClassIdentifier: 
   Name: Desert Eagle
+  CollectablePrefabFilePath: Prefabs/Collectables/SM_Wep_Pistol_Heavy_01
   FireMode: 0
   WeaponType: 0
   HapticShotStrength: 0.6

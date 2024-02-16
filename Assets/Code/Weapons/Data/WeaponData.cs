@@ -4,6 +4,7 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public string Name;
+    public string CollectablePrefabFilePath;
 
     [Header("Settings")]
     public FireMode FireMode;
