@@ -87,6 +87,11 @@ public class ScreenspaceUIManager : MonoBehaviour
         m_ammoCounterText.text = currentClip.ToString() + " / " + reserveAmmo.ToString();
     }
 
+    public void ClearAmmoCounterText()
+    {
+        m_ammoCounterText.text = "";
+    }
+
     public void UpdateInteractText(string text)
     {
         m_interactText.text = text;

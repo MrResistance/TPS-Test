@@ -1,14 +1,17 @@
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.Windows;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    public static PlayerAnimationController Instance;
+
     [SerializeField] private Animator m_animator;
 
+    [SerializeField] private RigBuilder m_rigBuilder;
     [SerializeField] private MultiAimConstraint m_bodyConstraint;
     [SerializeField] private MultiAimConstraint m_handAimConstraint;
     [SerializeField] private TwoBoneIKConstraint m_secondHandGrabWeapon;
@@ -20,12 +23,28 @@ public class PlayerAnimationController : MonoBehaviour
 
     private Dictionary<WeaponType, float> weaponAnimationMap;
 
+    private AnimationEventBroadcaster m_animationEventBroadcaster;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     private void Start()
     {
+        InitialiseWeaponTypeDictionary();
+        InitialiseAnimationEventSubscriptions();
         PlayerInputs.Instance.OnSecondaryHeld += StartAiming;
         PlayerInputs.Instance.OnSecondaryReleased += StopAiming;
-        InitialiseWeaponTypeDictionary();
         WeaponRig.Instance.OnWeaponChanged += SwitchWeapon;
+
 
         if (WeaponRig.Instance.UnlockedWeapons.Count > 0)
         {
@@ -50,20 +69,6 @@ public class PlayerAnimationController : MonoBehaviour
 
         m_animator.SetFloat("Horizontal", x, 0.1f, Time.deltaTime);
         m_animator.SetFloat("Vertical", y, 0.1f, Time.deltaTime);
-    }
-
-    private void Unarmed()
-    {
-        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 0);
-        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 0);
-        m_secondHandGrabWeapon.weight = 0;
-    }
-
-    private void Armed()
-    {
-        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 1);
-        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 1);
-        m_secondHandGrabWeapon.weight = 1;
     }
 
     [Button]
@@ -104,6 +109,17 @@ public class PlayerAnimationController : MonoBehaviour
         }
     }
 
+    public void Reload()
+    {
+        m_animator.Play("ReloadWeapon", 2);
+        m_secondHandGrabWeapon.weight = 0f;
+    }
+
+    public void ReloadComplete()
+    {
+        m_secondHandGrabWeapon.weight = 1.0f;
+    }
+
     private IEnumerator ChangeRigWeightValueOverTime(MultiAimConstraint multiAimConstraint, float targetVal, float duration)
     {
         float startVal = multiAimConstraint.weight;
@@ -135,6 +151,17 @@ public class PlayerAnimationController : MonoBehaviour
         yield return null; // This coroutine waits for the first call to Step() to finish
     }
 
+    private void InitialiseAnimationEventSubscriptions()
+    {
+        AnimationEventBroadcaster[] behaviours = m_animator.GetBehaviours<AnimationEventBroadcaster>();
+        if (behaviours.Length > 0)
+        {
+            m_animationEventBroadcaster = behaviours[0]; // assuming it's the first one
+            m_animationEventBroadcaster.ReloadComplete -= ReloadComplete;
+            m_animationEventBroadcaster.ReloadComplete += ReloadComplete;
+        }
+    }
+
     private void InitialiseWeaponTypeDictionary()
     {
         weaponAnimationMap = new Dictionary<WeaponType, float>()
@@ -163,6 +190,22 @@ public class PlayerAnimationController : MonoBehaviour
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponTargetIdle,
             WeaponRig.Instance.CurrentWeapon.PrimaryHandGrabWeaponHintIdle);
         }
+    }
+
+    private void Unarmed()
+    {
+        Debug.Log("Unarmed!");
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 0);
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 0);
+        m_secondHandGrabWeapon.weight = 0f;
+    }
+
+    private void Armed()
+    {
+        Debug.Log("Armed!");
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 1);
+        m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 1);
+        m_secondHandGrabWeapon.weight = 1.0f;
     }
 
     private void SetHandIK(Transform secondHandTarget, Transform secondHandHint, Transform primaryHandTarget, Transform primaryHandHint)

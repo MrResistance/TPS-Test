@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponRig : MonoBehaviour
@@ -15,6 +14,7 @@ public class WeaponRig : MonoBehaviour
     [Tooltip("This is the transform that is parent to the weapon gameobjects."),
         SerializeField]
     private Transform m_weaponHand;
+
     public Weapon CurrentWeapon => m_currentWeapon;
     public AudioSource AudioSource;
 
@@ -94,6 +94,7 @@ public class WeaponRig : MonoBehaviour
         m_currentWeaponLocation = m_unlockedWeapons.IndexOf(m_currentWeapon);
         m_currentWeapon.gameObject.SetActive(false);
 
+
         if (upOrDown)
         {
             // Move to the next weapon, wrapping around to the start if at the end
@@ -153,9 +154,9 @@ public class WeaponRig : MonoBehaviour
         if (CurrentWeapon != null)
         {
             m_currentWeaponLocation = m_unlockedWeapons.IndexOf(m_currentWeapon);
+            m_currentWeapon.gameObject.SetActive(true);
         }
-
-        CurrentWeapon.gameObject.SetActive(true);
+        
         UpdateAmmoCounterMethod();
         OnWeaponChanged?.Invoke();
     }
@@ -165,6 +166,10 @@ public class WeaponRig : MonoBehaviour
         if (m_currentWeapon != null)
         {
             UpdateAmmoCounter?.Invoke(m_currentWeapon.CurrentAmmoInClip, m_currentWeapon.CurrentReserveAmmo);
+        }
+        else
+        {
+            ScreenspaceUIManager.Instance.ClearAmmoCounterText();
         }
     }
 }

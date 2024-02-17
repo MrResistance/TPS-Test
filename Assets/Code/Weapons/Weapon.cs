@@ -55,7 +55,7 @@ public class Weapon : MonoBehaviour
     public Transform PrimaryHandGrabWeaponHintAim;
 
     public event Action OnShoot;
-    private ReloadAnimationEventBroadcaster m_reloadEventBroadcaster;
+    private AnimationEventBroadcaster m_reloadEventBroadcaster;
 
     #region Event Subscriptions
     protected void Start()
@@ -104,7 +104,7 @@ public class Weapon : MonoBehaviour
         }
         PlayerInputs.Instance.OnReload -= Reload;
         PlayerInputs.Instance.OnReload += Reload;
-        ReloadAnimationEventBroadcaster[] behaviours = m_animator.GetBehaviours<ReloadAnimationEventBroadcaster>();
+        AnimationEventBroadcaster[] behaviours = m_animator.GetBehaviours<AnimationEventBroadcaster>();
         if (behaviours.Length > 0)
         {
             m_reloadEventBroadcaster = behaviours[0]; // assuming it's the first one
@@ -175,6 +175,7 @@ public class Weapon : MonoBehaviour
             m_currentAmmoInClip = 0;
             m_amountToReload = reloadRequestResult;
             m_animator.SetTrigger("Reload");
+            PlayerAnimationController.Instance.Reload();
         }
         else
         {
@@ -212,7 +213,6 @@ public class Weapon : MonoBehaviour
         m_amountToReload = 0;
 
         //PlayRandomSFX(m_insertMag);
-
         WeaponRig.Instance.UpdateAmmoCounterMethod();
     }
 
