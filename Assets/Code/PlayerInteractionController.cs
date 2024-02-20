@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerInteractionController : MonoBehaviour
 {
-    [SerializeField] private Interactable m_interactable;
-    [SerializeField] private LayerMask m_layerMask;
+    private Interactable m_interactable;
+    private LayerMask m_layerMask;
 
     private void Start()
     {

@@ -213,7 +213,6 @@ public class Weapon : MonoBehaviour
         m_amountToReload = 0;
 
         //PlayRandomSFX(m_insertMag);
-        WeaponRig.Instance.UpdateAmmoCounterMethod();
     }
 
     public void GainReserveAmmo(int amount)

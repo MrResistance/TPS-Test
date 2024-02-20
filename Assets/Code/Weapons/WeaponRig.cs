@@ -81,6 +81,8 @@ public class WeaponRig : MonoBehaviour
             m_currentWeapon = m_unlockedWeapons[0];
             CurrentWeaponSetup();
         }
+
+        UpdateAmmoCounterMethod();
     }
 
     private void SelectWeapon(bool upOrDown)
@@ -157,8 +159,8 @@ public class WeaponRig : MonoBehaviour
             m_currentWeapon.gameObject.SetActive(true);
         }
         
-        UpdateAmmoCounterMethod();
         OnWeaponChanged?.Invoke();
+        Invoke(nameof(UpdateAmmoCounterMethod), 0);
     }
 
     public void UpdateAmmoCounterMethod()

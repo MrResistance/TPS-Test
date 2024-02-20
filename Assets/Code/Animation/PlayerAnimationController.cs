@@ -46,7 +46,6 @@ public class PlayerAnimationController : MonoBehaviour
         PlayerInputs.Instance.OnSecondaryReleased += StopAiming;
         WeaponRig.Instance.OnWeaponChanged += SwitchWeapon;
 
-
         if (WeaponRig.Instance.UnlockedWeapons.Count > 0)
         {
             Armed();
@@ -118,6 +117,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void ReloadComplete()
     {
+        WeaponRig.Instance.UpdateAmmoCounterMethod();
         Invoke(nameof(SetSecondHandGrabWeightToMax), 0);
     }
 
