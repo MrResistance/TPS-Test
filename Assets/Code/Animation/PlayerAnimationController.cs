@@ -118,7 +118,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void ReloadComplete()
     {
-        Debug.Log("Reload Complete.");
         Invoke(nameof(SetSecondHandGrabWeightToMax), 0);
     }
 
