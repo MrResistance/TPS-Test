@@ -17,6 +17,7 @@ public class WeaponData : ScriptableObject
     public int Damage;
     public int EffectiveRange;
     public float FireRateCooldown;
+    public Vector2 Recoil;
 
     [Header("Ammo")]
     public int MaxClipSize;

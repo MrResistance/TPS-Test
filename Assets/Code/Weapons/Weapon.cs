@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -17,6 +18,7 @@ public class Weapon : MonoBehaviour
     public int m_effectiveRange;
     private float m_fireRateCooldown;
     private float m_hapticShotStrength;
+    private Vector2 m_recoil;
 
     //Ammo
     private int m_maxClipSize;
@@ -258,6 +260,11 @@ public class Weapon : MonoBehaviour
             WeaponRig.Instance.UpdateAmmoCounterMethod();
             PlayerInputs.Instance.StartHapticFeedback(m_hapticShotStrength, m_fireRateCooldown / 2);
 
+            float randomXrecoil = UnityEngine.Random.Range(-m_recoil.x, m_recoil.x);
+            Vector2 randomRecoil = new (randomXrecoil, m_recoil.y);
+
+            CameraController.Instance.Recoil += randomRecoil;
+
             //PlayRandomSFX(m_shot);
         }
     }
@@ -267,6 +274,8 @@ public class Weapon : MonoBehaviour
         PlayerInputs.Instance.StopHapticFeedback();
         m_currentlyShooting = false;
         m_gunshotFX.Stop();
+
+        CameraController.Instance.Recoil = Vector2.zero;
     }
     #endregion
 
@@ -285,6 +294,7 @@ public class Weapon : MonoBehaviour
         WeaponType = m_weaponData.WeaponType;
         m_hapticShotStrength = m_weaponData.HapticShotStrength;
         m_hitForce = m_weaponData.HitForce;
+        m_recoil = m_weaponData.Recoil;
         m_damage = m_weaponData.Damage;
         m_effectiveRange = m_weaponData.EffectiveRange;
         m_fireRateCooldown = m_weaponData.FireRateCooldown;

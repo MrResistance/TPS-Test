@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController Instance;
     [SerializeField] private Camera m_camera;
     [SerializeField] private Transform m_characterTransform;
     [SerializeField] private Vector3 m_cameraOffset;
@@ -18,6 +19,19 @@ public class CameraController : MonoBehaviour
     
     private float currentYRotation = 0f;
 
+    public Vector2 Recoil;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -50,6 +64,7 @@ public class CameraController : MonoBehaviour
         PlayerInputs.Instance.OnSecondaryPressed -= AimDownSight;
         PlayerInputs.Instance.OnSecondaryReleased -= AimFromHip;
     }
+
     private void OnDestroy()
     {
         PlayerInputs.Instance.OnSecondaryPressed -= AimDownSight;
@@ -71,7 +86,7 @@ public class CameraController : MonoBehaviour
 
     private void RotateCamera()
     {
-        Vector2 lookDirection = PlayerInputs.Instance.lookInput;
+        Vector2 lookDirection = PlayerInputs.Instance.lookInput + Recoil;
 
         // Calculate new y rotation (x-axis rotation)
         currentYRotation += -lookDirection.y * m_rotationSpeed * Time.deltaTime;
