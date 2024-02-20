@@ -10,6 +10,7 @@ public class GameSettings : MonoBehaviour
 
     public LayerMask DamageableLayer;
     public LayerMask BulletImpactDecalLayer;
+    public LayerMask InteractableLayer;
 
     private void Awake()
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Collectable : MonoBehaviour, IInteractable
+public class Collectable : Interactable
 {
     private void OnTriggerEnter(Collider other)
     {

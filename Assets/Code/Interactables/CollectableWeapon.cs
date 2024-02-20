@@ -14,17 +14,12 @@ public class CollectableWeapon : Collectable
         {
             ScreenspaceUIManager.Instance.UpdateInteractText("Press <color=yellow><b>F</b></color> to pick up " + m_weaponData.Name);
         }
-        PlayerInputs.Instance.OnInteractPressed += CollectWeapon;
+        
     }
 
-    private void OnTriggerExit(Collider other)
+    public override void OnInteract()
     {
-        ScreenspaceUIManager.Instance.ClearInteractText();
-        PlayerInputs.Instance.OnInteractPressed -= CollectWeapon;
-    }
-
-    private void CollectWeapon()
-    {
+        base.OnInteract();
         if (WeaponRig.Instance.CurrentWeapon != null && WeaponRig.Instance.UnlockedWeapons.Count == WeaponRig.Instance.MaxWeaponsInInventory)
         {
             SpawnReplacementWeaponCollectable();
@@ -37,7 +32,6 @@ public class CollectableWeapon : Collectable
 
     private void DestroyWeapon()
     {
-        PlayerInputs.Instance.OnInteractPressed -= CollectWeapon;
         Destroy(gameObject);
     }
 

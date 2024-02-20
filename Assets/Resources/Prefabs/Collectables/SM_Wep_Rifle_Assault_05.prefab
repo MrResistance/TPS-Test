@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 8671661187368325728}
   - component: {fileID: 3324940449097759780}
   - component: {fileID: 4007259786598961884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Wep_Rifle_Assault_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
