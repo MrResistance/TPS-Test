@@ -55,7 +55,7 @@ public class Weapon : MonoBehaviour
     public Transform PrimaryHandGrabWeaponHintAim;
 
     public event Action OnShoot;
-    private AnimationEventBroadcaster m_reloadEventBroadcaster;
+    private AnimationEventBroadcaster m_animationEventBroadcaster;
 
     #region Event Subscriptions
     protected void Start()
@@ -107,9 +107,9 @@ public class Weapon : MonoBehaviour
         AnimationEventBroadcaster[] behaviours = m_animator.GetBehaviours<AnimationEventBroadcaster>();
         if (behaviours.Length > 0)
         {
-            m_reloadEventBroadcaster = behaviours[0]; // assuming it's the first one
-            m_reloadEventBroadcaster.ReloadComplete -= ReloadComplete;
-            m_reloadEventBroadcaster.ReloadComplete += ReloadComplete;
+            m_animationEventBroadcaster = behaviours[0]; // assuming it's the first one
+            m_animationEventBroadcaster.ReloadComplete -= ReloadComplete;
+            m_animationEventBroadcaster.ReloadComplete += ReloadComplete;
         }
     }
 
@@ -118,7 +118,7 @@ public class Weapon : MonoBehaviour
         StopReceivingPrimaryPressedEvents();
         StopReceivingPrimaryHeldEvents();
         PlayerInputs.Instance.OnReload -= Reload;
-        m_reloadEventBroadcaster.ReloadComplete -= Reload;
+        m_animationEventBroadcaster.ReloadComplete -= Reload;
     }
 
     protected void OnDestroy()
@@ -126,7 +126,7 @@ public class Weapon : MonoBehaviour
         StopReceivingPrimaryPressedEvents();
         StopReceivingPrimaryHeldEvents();
         PlayerInputs.Instance.OnReload -= Reload;
-        m_reloadEventBroadcaster.ReloadComplete -= Reload;
+        m_animationEventBroadcaster.ReloadComplete -= Reload;
     }
 
     public void ReceivePrimaryPressedEvents()

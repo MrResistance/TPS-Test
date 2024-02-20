@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -80,8 +81,8 @@ public class PlayerAnimationController : MonoBehaviour
     private void StartAiming()
     {
         StopAllCoroutines();
-        StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0.7f, 0.25f));
-        StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 1f, 0.05f));
+        StartCoroutine(ChangeMultiAimConstraintWeightValueOverTime(m_bodyConstraint, 0.7f, 0.25f));
+        StartCoroutine(ChangeMultiAimConstraintWeightValueOverTime(m_handAimConstraint, 1f, 0.05f));
         m_animator.SetBool("Aiming", true);
         if (WeaponRig.Instance.CurrentWeapon != null)
         {
@@ -96,8 +97,8 @@ public class PlayerAnimationController : MonoBehaviour
     private void StopAiming()
     {
         StopAllCoroutines();
-        StartCoroutine(ChangeRigWeightValueOverTime(m_bodyConstraint, 0f, 0.25f));
-        StartCoroutine(ChangeRigWeightValueOverTime(m_handAimConstraint, 0f, 0.25f));
+        StartCoroutine(ChangeMultiAimConstraintWeightValueOverTime(m_bodyConstraint, 0f, 0.25f));
+        StartCoroutine(ChangeMultiAimConstraintWeightValueOverTime(m_handAimConstraint, 0f, 0.25f));
         m_animator.SetBool("Aiming", false);
         if (WeaponRig.Instance.CurrentWeapon != null)
         {
@@ -115,12 +116,49 @@ public class PlayerAnimationController : MonoBehaviour
         m_secondHandGrabWeapon.weight = 0f;
     }
 
-    public void ReloadComplete()
+    private void ReloadComplete()
     {
-        m_secondHandGrabWeapon.weight = 1.0f;
+        Debug.Log("Reload Complete.");
+        Invoke(nameof(SetSecondHandGrabWeightToMax), 0);
     }
 
-    private IEnumerator ChangeRigWeightValueOverTime(MultiAimConstraint multiAimConstraint, float targetVal, float duration)
+    private void SetSecondHandGrabWeightToMax()
+    {
+        StartCoroutine(ChangeTwoBoneIKConstraintWeightValueOverTime(m_secondHandGrabWeapon, 1f, 0.25f));
+    }
+
+    private IEnumerator ChangeTwoBoneIKConstraintWeightValueOverTime(TwoBoneIKConstraint twoBoneIKConstraint, float targetVal, float duration)
+    {
+        float startVal = twoBoneIKConstraint.weight;
+        float timeElapsed = 0f;
+
+        // Recursive step function
+        void Step()
+        {
+            if (timeElapsed < duration)
+            {
+                timeElapsed += Time.deltaTime;
+                twoBoneIKConstraint.weight = Mathf.Lerp(startVal, targetVal, timeElapsed / duration);
+                StartCoroutine(StepCoroutine()); // Schedule next step
+            }
+            else
+            {
+                twoBoneIKConstraint.weight = targetVal; // Ensure target value is set at the end
+            }
+        }
+
+        // Wrapper coroutine to call the step function
+        IEnumerator StepCoroutine()
+        {
+            yield return null; // Wait for the next frame
+            Step();
+        }
+
+        Step(); // Start the process
+        yield return null; // This coroutine waits for the first call to Step() to finish
+    }
+
+    private IEnumerator ChangeMultiAimConstraintWeightValueOverTime(MultiAimConstraint multiAimConstraint, float targetVal, float duration)
     {
         float startVal = multiAimConstraint.weight;
         float timeElapsed = 0f;
@@ -157,7 +195,6 @@ public class PlayerAnimationController : MonoBehaviour
         if (behaviours.Length > 0)
         {
             m_animationEventBroadcaster = behaviours[0]; // assuming it's the first one
-            m_animationEventBroadcaster.ReloadComplete -= ReloadComplete;
             m_animationEventBroadcaster.ReloadComplete += ReloadComplete;
         }
     }
@@ -194,7 +231,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Unarmed()
     {
-        Debug.Log("Unarmed!");
         m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 0);
         m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 0);
         m_secondHandGrabWeapon.weight = 0f;
@@ -202,7 +238,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Armed()
     {
-        Debug.Log("Armed!");
         m_animator.SetLayerWeight(m_animator.GetLayerIndex("Action Layer"), 1);
         m_animator.SetLayerWeight(m_animator.GetLayerIndex("Armed Locomotion Layer"), 1);
         m_secondHandGrabWeapon.weight = 1.0f;
