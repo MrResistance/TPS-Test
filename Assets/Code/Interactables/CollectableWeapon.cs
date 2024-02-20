@@ -4,7 +4,7 @@ public class CollectableWeapon : Collectable
 {
     [SerializeField] private WeaponData m_weaponData;
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (WeaponRig.Instance.CurrentWeapon != null && WeaponRig.Instance.UnlockedWeapons.Count == WeaponRig.Instance.MaxWeaponsInInventory)
         {
