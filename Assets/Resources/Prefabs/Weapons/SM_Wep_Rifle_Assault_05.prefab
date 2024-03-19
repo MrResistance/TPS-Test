@@ -344,8 +344,10 @@ GameObject:
   - component: {fileID: 1658229093195873378}
   - component: {fileID: 1667544374285002054}
   - component: {fileID: 1690757392447706056}
+  - component: {fileID: 3575581629038684333}
   - component: {fileID: 4166681549936137735}
   - component: {fileID: 1640900876576925320}
+  - component: {fileID: 323920493326990597}
   m_Layer: 0
   m_Name: SM_Wep_Rifle_Assault_05
   m_TagString: Untagged
@@ -360,9 +362,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690386245835904208}
-  m_LocalRotation: {x: -0.49999988, y: 0.5, z: -0.49999988, w: 0.50000024}
-  m_LocalPosition: {x: 0.10250015, y: 0.016999502, z: -0.034300167}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1686559238435875906}
@@ -373,7 +375,7 @@ Transform:
   - {fileID: 1690757390827772616}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1658229093195873378
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -445,6 +447,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!135 &3575581629038684333
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690386245835904208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: -2.2853445e-14, y: 0.02648766, z: 0.21426484}
 --- !u!114 &4166681549936137735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,9 +473,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_weaponData: {fileID: 11400000, guid: 094b88c96d955674c933fea1557dcb01, type: 2}
-  WeaponUnlocked: 1
   WeaponFireMode: 0
   WeaponType: 0
+  PositionOffset: {x: 0, y: 0, z: 0}
+  RotationOffset: {x: 0, y: 90, z: -90}
   m_hitForce: 0
   m_damage: 0
   m_effectiveRange: 0
@@ -489,6 +505,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_weapon: {fileID: 4166681549936137735}
   m_rayFromBarrel: 0
+--- !u!114 &323920493326990597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690386245835904208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86654a388628054fa21400d0717ff52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_weapon: {fileID: 4166681549936137735}
+  Collider: {fileID: 3575581629038684333}
 --- !u!1 &1690757390827772663
 GameObject:
   m_ObjectHideFlags: 0

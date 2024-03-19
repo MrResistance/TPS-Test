@@ -10,12 +10,12 @@ public class WeaponRig : MonoBehaviour
     public int MaxWeaponsInInventory = 2;
 
     [Header("References")]
-    public Weapon m_currentWeapon;
+    private Weapon m_currentWeapon;
+    public Weapon CurrentWeapon => m_currentWeapon;
     [Tooltip("This is the transform that is parent to the weapon gameobjects."),
         SerializeField]
     private Transform m_weaponHand;
-
-    public Weapon CurrentWeapon => m_currentWeapon;
+    public Transform WeaponHand => m_weaponHand;
     public AudioSource AudioSource;
 
     [Header("Currently Unlocked Weapons List")]
@@ -79,7 +79,7 @@ public class WeaponRig : MonoBehaviour
         if (m_unlockedWeapons.Count > 0)
         {
             m_currentWeapon = m_unlockedWeapons[0];
-            CurrentWeaponSetup();
+            WeaponChanged();
         }
 
         UpdateAmmoCounterMethod();
@@ -117,41 +117,10 @@ public class WeaponRig : MonoBehaviour
         }
 
         m_currentWeapon = m_unlockedWeapons[m_currentWeaponLocation];
-        CurrentWeaponSetup();
+        WeaponChanged();
     }
 
-    public void SetWeapon(WeaponData weaponData)
-    {
-        if (UnlockedWeapons.Count == MaxWeaponsInInventory)
-        {
-            m_unlockedWeapons.Remove(CurrentWeapon);
-            CurrentWeapon.DestroyWeapon();
-        }
-        
-        if (CurrentWeapon != null)
-        {
-            m_currentWeapon.gameObject.SetActive(false);
-        }
-
-        string prefabPath = weaponData.UsablePrefabFilePath;
-        GameObject prefab = Resources.Load<GameObject>(prefabPath);
-        if (prefab != null)
-        {
-            var obj = Instantiate(prefab, m_weaponHand);
-            Weapon weapon = obj.GetComponent<Weapon>();
-            m_currentWeapon = weapon;
-            m_currentWeaponLocation = m_unlockedWeapons.IndexOf(m_currentWeapon);
-            m_unlockedWeapons.Add(weapon);
-        }
-        else
-        {
-            Debug.LogError("Prefab not found at path: " + prefabPath);
-        }
-        
-        CurrentWeaponSetup();
-    }
-
-    private void CurrentWeaponSetup()
+    private void WeaponChanged()
     {
         if (CurrentWeapon != null)
         {
@@ -173,5 +142,37 @@ public class WeaponRig : MonoBehaviour
         {
             ScreenspaceUIManager.Instance.ClearAmmoCounterText();
         }
+    }
+
+    public void TrySetWeapon(Weapon weapon)
+    {
+        weapon.enabled = true;
+
+        if (CurrentWeapon != null)
+        {
+            CurrentWeapon.gameObject.SetActive(false);
+        }
+
+        if (UnlockedWeapons.Count == MaxWeaponsInInventory)
+        {
+            m_unlockedWeapons.Remove(CurrentWeapon);
+            CurrentWeapon.transform.SetParent(null);
+            CurrentWeapon.transform.SetPositionAndRotation(weapon.transform.position, weapon.transform.rotation);
+            CurrentWeapon.enabled = false;
+
+            if (CurrentWeapon.TryGetComponent(out CollectableWeapon collectableWeapon))
+            {
+                collectableWeapon.Collider.enabled = true;
+            }
+        }
+
+        m_currentWeapon = weapon;
+
+        m_currentWeapon.transform.SetParent(m_weaponHand);
+        m_currentWeapon.transform.SetLocalPositionAndRotation(m_currentWeapon.PositionOffset, Quaternion.Euler(m_currentWeapon.RotationOffset));
+
+        m_unlockedWeapons.Add(CurrentWeapon);
+
+        WeaponChanged();
     }
 }

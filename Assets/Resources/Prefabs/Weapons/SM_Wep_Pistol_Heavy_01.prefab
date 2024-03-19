@@ -262,8 +262,10 @@ GameObject:
   - component: {fileID: 6995106393548644597}
   - component: {fileID: 7003361367625559349}
   - component: {fileID: 7224368846079421401}
+  - component: {fileID: 2704966446402117874}
   - component: {fileID: 7017935198612962321}
   - component: {fileID: 3389346539342098734}
+  - component: {fileID: -9101761577221440176}
   m_Layer: 0
   m_Name: SM_Wep_Pistol_Heavy_01
   m_TagString: Untagged
@@ -278,8 +280,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7017147802120684073}
-  m_LocalRotation: {x: -0.49999985, y: 0.5, z: -0.5, w: 0.5000002}
-  m_LocalPosition: {x: 0.1026, y: 0.0276, z: -0.0205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -290,7 +292,7 @@ Transform:
   - {fileID: 7017935198566309998}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6995106393548644597
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -362,6 +364,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!135 &2704966446402117874
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7017147802120684073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: -3.6300046e-11, y: -0.0012176938, z: 0.10085267}
 --- !u!114 &7017935198612962321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,9 +390,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_weaponData: {fileID: 11400000, guid: 2f28109d86919234ebab0e14a6aa321b, type: 2}
-  WeaponUnlocked: 1
   WeaponFireMode: 0
   WeaponType: 0
+  PositionOffset: {x: 0, y: 0, z: 0}
+  RotationOffset: {x: 0, y: 90, z: -90}
   m_hitForce: 0
   m_damage: 0
   m_effectiveRange: 0
@@ -406,6 +422,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_weapon: {fileID: 7017935198612962321}
   m_rayFromBarrel: 0
+--- !u!114 &-9101761577221440176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7017147802120684073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86654a388628054fa21400d0717ff52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_weapon: {fileID: 7017935198612962321}
+  Collider: {fileID: 2704966446402117874}
 --- !u!1 &7017291553130564483
 GameObject:
   m_ObjectHideFlags: 0

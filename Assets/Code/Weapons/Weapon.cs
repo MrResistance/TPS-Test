@@ -11,6 +11,9 @@ public class Weapon : MonoBehaviour
     [Header("Settings")]
     public FireMode WeaponFireMode;
     public WeaponType WeaponType;
+    public Vector3 PositionOffset;
+    public Vector3 RotationOffset;
+
 
     //Stats
     public float m_hitForce;
@@ -64,6 +67,7 @@ public class Weapon : MonoBehaviour
     {
         InitialiseWeapon(true);
         InitialiseEventSubscriptions();
+        enabled = false;
     }
     protected void OnEnable()
     {
@@ -306,10 +310,5 @@ public class Weapon : MonoBehaviour
             m_currentAmmoInClip = m_weaponData.MaxClipSize;
             m_currentReserveAmmo = m_weaponData.CurrentReserveAmmo;
         }
-    }
-
-    public void DestroyWeapon()
-    {
-        Destroy(gameObject);
     }
 }
