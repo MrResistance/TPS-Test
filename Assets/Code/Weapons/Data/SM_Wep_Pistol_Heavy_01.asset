@@ -22,7 +22,7 @@ MonoBehaviour:
   Damage: 10
   EffectiveRange: 100
   FireRateCooldown: 0.5
-  Recoil: {x: 0, y: 0.5}
+  Recoil: {x: 0, y: 0.3}
   MaxClipSize: 12
   MaxReserveAmmo: 60
   CurrentReserveAmmo: 60

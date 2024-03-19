@@ -265,9 +265,10 @@ public class Weapon : MonoBehaviour
             PlayerInputs.Instance.StartHapticFeedback(m_hapticShotStrength, m_fireRateCooldown / 2);
 
             float randomXrecoil = UnityEngine.Random.Range(-m_recoil.x, m_recoil.x);
-            Vector2 randomRecoil = new (randomXrecoil, m_recoil.y);
+            float randomYrecoil = UnityEngine.Random.Range(0, m_recoil.y);
+            Vector2 randomRecoil = new (randomXrecoil, randomYrecoil);
 
-            CameraController.Instance.Recoil += randomRecoil;
+            RecoilListener.Instance.Recoil = randomRecoil;
 
             //PlayRandomSFX(m_shot);
         }
@@ -279,7 +280,7 @@ public class Weapon : MonoBehaviour
         m_currentlyShooting = false;
         m_gunshotFX.Stop();
 
-        CameraController.Instance.Recoil = Vector2.zero;
+        RecoilListener.Instance.Recoil = Vector2.zero;
     }
     #endregion
 

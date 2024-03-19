@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class ObjectToScreenCenter : MonoBehaviour
 {
-    public float distanceFromCamera = 10.0f; // Distance from the camera to the object
+    public float m_distanceFromCamera = 10.0f; // Distance from the camera to the object
+    protected Vector3 m_screenCenter;
 
-    void Update()
+    public virtual void Update()
     {
         // Calculate the screen center point
-        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, distanceFromCamera);
+        m_screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, m_distanceFromCamera);
 
         // Convert the screen point to a world point
-        transform.position = Camera.main.ScreenToWorldPoint(screenCenter);
+        transform.position = Camera.main.ScreenToWorldPoint(m_screenCenter);
     }
 }

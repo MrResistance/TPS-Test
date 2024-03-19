@@ -19,8 +19,6 @@ public class CameraController : MonoBehaviour
     
     private float currentYRotation = 0f;
 
-    public Vector2 Recoil;
-
     private void Awake()
     {
         if (Instance == null)
@@ -86,7 +84,7 @@ public class CameraController : MonoBehaviour
 
     private void RotateCamera()
     {
-        Vector2 lookDirection = PlayerInputs.Instance.lookInput + Recoil;
+        Vector2 lookDirection = PlayerInputs.Instance.lookInput;
 
         // Calculate new y rotation (x-axis rotation)
         currentYRotation += -lookDirection.y * m_rotationSpeed * Time.deltaTime;
