@@ -163,6 +163,7 @@ public class WeaponRig : MonoBehaviour
             if (CurrentWeapon.TryGetComponent(out CollectableWeapon collectableWeapon))
             {
                 collectableWeapon.Collider.enabled = true;
+                m_currentWeapon.gameObject.SetActive(true);
             }
         }
 
