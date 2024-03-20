@@ -392,7 +392,7 @@ MonoBehaviour:
   m_weaponData: {fileID: 11400000, guid: 2f28109d86919234ebab0e14a6aa321b, type: 2}
   WeaponFireMode: 0
   WeaponType: 0
-  PositionOffset: {x: 0, y: 0, z: 0}
+  PositionOffset: {x: 0.1012, y: 0.0166, z: -0.0239}
   RotationOffset: {x: 0, y: 90, z: -90}
   m_hitForce: 0
   m_damage: 0
