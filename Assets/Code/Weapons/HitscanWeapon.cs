@@ -42,52 +42,80 @@ public class HitscanWeapon : MonoBehaviour
 
         if (Physics.Raycast(ray, out m_weapon.m_raycastHit, m_weapon.m_effectiveRange))
         {
-            //If we hit an object with a collider, apply physics
-            if (m_weapon.m_raycastHit.collider.TryGetComponent<Rigidbody>(out _))
-            {
-                m_weapon.m_raycastHit.rigidbody.AddExplosionForce(m_weapon.m_hitForce, m_weapon.m_raycastHit.point, 1);
-            }
+            PhysicsCalculation();
 
-            //If the object is damageable, apply damage
-            if (m_weapon.m_raycastHit.collider.gameObject.layer == GameSettings.Instance.DamageableLayer)
-            {
-                if (m_weapon.m_raycastHit.collider.TryGetComponent(out DamageableChild damageableChild))
-                {
-                    damageableChild.LoseHitPoints(m_weapon.m_damage, damageableChild.transform.InverseTransformPoint(m_weapon.m_raycastHit.point));
-                }
-                else if (m_weapon.m_raycastHit.collider.TryGetComponent(out Damageable damageable))
-                {
-                    damageable.LoseHitPoints(m_weapon.m_damage);
-                    damageable.HitPosition = damageable.transform.InverseTransformPoint(m_weapon.m_raycastHit.point);
-                }
-            }
+            DamageCalculation();
 
-            //If the object should have a bullet impact decal, spawn one
-            if (m_weapon.m_raycastHit.collider.gameObject.layer == GameSettings.Instance.BulletImpactDecalLayer)
-            {
-                // Calculate the direction from the hit point back towards the ray origin
-                Vector3 directionToHitPoint = m_weapon.m_raycastHit.point - ray.origin;
-                directionToHitPoint.Normalize(); // Normalize to get just the direction
+            HandleImpactDecals();
 
-                // Calculate the rotation so that the forward vector of the decal points towards the hit point
-                Quaternion rotationTowardsHitPoint = Quaternion.LookRotation(directionToHitPoint);
-
-                // Spawn the BulletImpactDecal with the calculated rotation
-                ObjectPooler.Instance.SpawnFromPool("BulletImpactDecal", m_weapon.m_raycastHit.point, rotationTowardsHitPoint);
-            }
-
-            //Spawn the appropriate surface hit particle effect
-            SurfaceIdentifier surfaceIdentifier = m_weapon.m_raycastHit.collider.GetComponent<SurfaceIdentifier>();
-            if (surfaceIdentifier != null)
-            {
-                SurfaceType hitSurfaceType = surfaceIdentifier.surfaceType;
-                ObjectPooler.Instance.SpawnEffect(hitSurfaceType, m_weapon.m_raycastHit.point, m_weapon.m_raycastHit.transform.rotation);
-            }
+            HandleSurfaceParticleEffects();
 
             if (m_weapon.m_raycastHit.collider.TryGetComponent(out TargetDummy dummy))
             {
                 dummy.MoveTargetDown();
             }
+        }
+    }
+
+    /// <summary>
+    /// If we hit an object with a collider, apply physics.
+    /// </summary>
+    private void PhysicsCalculation()
+    {
+        if (m_weapon.m_raycastHit.collider.TryGetComponent<Rigidbody>(out _))
+        {
+            m_weapon.m_raycastHit.rigidbody.AddExplosionForce(m_weapon.m_hitForce, m_weapon.m_raycastHit.point, 1);
+        }
+    }
+
+    /// <summary>
+    /// If the object is damageable, apply damage.
+    /// </summary>
+    private void DamageCalculation()
+    {
+        if (m_weapon.m_raycastHit.collider.gameObject.layer == GameSettings.Instance.DamageableLayer)
+        {
+            if (m_weapon.m_raycastHit.collider.TryGetComponent(out DamageableChild damageableChild))
+            {
+                damageableChild.LoseHitPoints(m_weapon.m_damage, damageableChild.transform.InverseTransformPoint(m_weapon.m_raycastHit.point));
+            }
+            else if (m_weapon.m_raycastHit.collider.TryGetComponent(out Damageable damageable))
+            {
+                damageable.LoseHitPoints(m_weapon.m_damage);
+                damageable.HitPosition = damageable.transform.InverseTransformPoint(m_weapon.m_raycastHit.point);
+            }
+        }
+    }
+
+    /// <summary>
+    /// If the object should have a bullet impact decal, spawn one.
+    /// </summary>
+    private void HandleImpactDecals()
+    {
+        if (m_weapon.m_raycastHit.collider.gameObject.layer == GameSettings.Instance.BulletImpactDecalLayer)
+        {
+            // Calculate the direction from the hit point back towards the ray origin
+            Vector3 directionToHitPoint = m_weapon.m_raycastHit.point - ray.origin;
+            directionToHitPoint.Normalize(); // Normalize to get just the direction
+
+            // Calculate the rotation so that the forward vector of the decal points towards the hit point
+            Quaternion rotationTowardsHitPoint = Quaternion.LookRotation(directionToHitPoint);
+
+            // Spawn the BulletImpactDecal with the calculated rotation
+            ObjectPooler.Instance.SpawnFromPool("BulletImpactDecal", m_weapon.m_raycastHit.point, rotationTowardsHitPoint);
+        }
+    }
+
+    /// <summary>
+    /// Spawn the appropriate surface hit particle effect.
+    /// </summary>
+    private void HandleSurfaceParticleEffects()
+    {
+        SurfaceIdentifier surfaceIdentifier = m_weapon.m_raycastHit.collider.GetComponent<SurfaceIdentifier>();
+        if (surfaceIdentifier != null)
+        {
+            SurfaceType hitSurfaceType = surfaceIdentifier.surfaceType;
+            ObjectPooler.Instance.SpawnEffect(hitSurfaceType, m_weapon.m_raycastHit.point, m_weapon.m_raycastHit.transform.rotation);
         }
     }
 }
