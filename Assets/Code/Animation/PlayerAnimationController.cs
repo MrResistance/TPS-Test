@@ -203,6 +203,7 @@ public class PlayerAnimationController : MonoBehaviour
             // Start with 1 because 0 is unarmed in the animator, but not a "Weapon Type" so it doesn't need a value here
             { WeaponType.pistol, 1 },
             { WeaponType.assaultRifle, 2 },
+            { WeaponType.shotgun, 3}
             // Map new weapon types to their animation IDs here
         };
     }

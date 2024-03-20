@@ -5,7 +5,6 @@ public class WeaponData : ScriptableObject
 {
     public string Name;
     public string UsablePrefabFilePath;
-    public string CollectablePrefabFilePath;
 
     [Header("Settings")]
     public FireMode FireMode;
@@ -26,4 +25,4 @@ public class WeaponData : ScriptableObject
 }
 
 public enum FireMode { semiAuto, fullAuto }
-public enum WeaponType { pistol, assaultRifle }
+public enum WeaponType { pistol, assaultRifle, shotgun }
