@@ -265,8 +265,7 @@ public class Weapon : MonoBehaviour
             PlayerInputs.Instance.StartHapticFeedback(m_hapticShotStrength, m_fireRateCooldown / 2);
 
             float randomXrecoil = UnityEngine.Random.Range(-m_recoil.x, m_recoil.x);
-            float randomYrecoil = UnityEngine.Random.Range(0, m_recoil.y);
-            Vector2 randomRecoil = new (randomXrecoil, randomYrecoil);
+            Vector2 randomRecoil = new (randomXrecoil, m_recoil.y);
 
             RecoilListener.Instance.Recoil = randomRecoil;
 

@@ -21,8 +21,8 @@ MonoBehaviour:
   Damage: 10
   EffectiveRange: 300
   FireRateCooldown: 0.1
-  RecoilDistance: {x: 0.05, y: 0.00025}
-  RecoilStrength: 30000
+  RecoilDistance: {x: 0.05, y: 0.25}
+  RecoilStrength: 30
   Spread: {x: 0, y: 0}
   ImpactsPerShot: 1
   MaxClipSize: 30

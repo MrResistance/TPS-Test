@@ -21,7 +21,7 @@ MonoBehaviour:
   Damage: 10
   EffectiveRange: 100
   FireRateCooldown: 0.5
-  RecoilDistance: {x: 0, y: 0.2}
+  RecoilDistance: {x: 0, y: 5}
   RecoilStrength: 30
   Spread: {x: 0, y: 0}
   ImpactsPerShot: 1
