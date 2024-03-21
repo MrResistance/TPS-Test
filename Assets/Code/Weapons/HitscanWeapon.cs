@@ -4,6 +4,7 @@ public class HitscanWeapon : MonoBehaviour
 {
     [SerializeField] private Weapon m_weapon;
     [SerializeField] private bool m_rayFromBarrel = false;
+    private Ray m_ray;
     #region Event Subscriptions
     private void Start()
     {
@@ -26,33 +27,45 @@ public class HitscanWeapon : MonoBehaviour
 
     private void HitCalculation()
     {
-        Ray ray;
-        if (!m_rayFromBarrel)
+        for (int i = 0; i < m_weapon.WeaponData.ImpactsPerShot; i++)
         {
-            // Get the center point of the screen
-            Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            float spreadX = 0;
+            float spreadY = 0;
 
-            // Create a ray from the center of the screen
-            ray = Camera.main.ScreenPointToRay(screenCenter);
-        }
-        else
-        {
-            ray = new Ray(m_weapon.Barrel.position, m_weapon.transform.forward);
-        }
-
-        if (Physics.Raycast(ray, out m_weapon.m_raycastHit, m_weapon.m_effectiveRange))
-        {
-            PhysicsCalculation();
-
-            DamageCalculation();
-
-            HandleImpactDecals();
-
-            HandleSurfaceParticleEffects();
-
-            if (m_weapon.m_raycastHit.collider.TryGetComponent(out TargetDummy dummy))
+            if (m_weapon.WeaponType == WeaponType.shotgun)
             {
-                dummy.MoveTargetDown();
+                spreadX = Random.Range(-m_weapon.WeaponData.Spread.x, m_weapon.WeaponData.Spread.x);
+                spreadY = Random.Range(-m_weapon.WeaponData.Spread.y, m_weapon.WeaponData.Spread.y);
+            }
+
+            if (!m_rayFromBarrel)
+            {
+                // Get the center point of the screen
+                Vector3 screenCenter = new Vector3(Screen.width / 2 + spreadX, Screen.height / 2 + spreadY, 0);
+
+                // Create a ray from the center of the screen
+                m_ray = Camera.main.ScreenPointToRay(screenCenter);
+            }
+            else
+            {
+                Vector3 barrelForward = new Vector3(m_weapon.transform.forward.x + spreadX, m_weapon.transform.forward.y + spreadY, m_weapon.transform.forward.z);
+                m_ray = new Ray(m_weapon.Barrel.position, barrelForward);
+            }
+
+            if (Physics.Raycast(m_ray, out m_weapon.m_raycastHit, m_weapon.m_effectiveRange))
+            {
+                PhysicsCalculation();
+
+                DamageCalculation();
+
+                HandleImpactDecals();
+
+                HandleSurfaceParticleEffects();
+
+                if (m_weapon.m_raycastHit.collider.TryGetComponent(out TargetDummy dummy))
+                {
+                    dummy.MoveTargetDown();
+                }
             }
         }
     }
@@ -95,7 +108,7 @@ public class HitscanWeapon : MonoBehaviour
         if (m_weapon.m_raycastHit.collider.gameObject.layer == GameSettings.Instance.BulletImpactDecalLayer)
         {
             // Calculate the direction from the hit point back towards the ray origin
-            Vector3 directionToHitPoint = m_weapon.m_raycastHit.point - ray.origin;
+            Vector3 directionToHitPoint = m_weapon.m_raycastHit.point - m_ray.origin;
             directionToHitPoint.Normalize(); // Normalize to get just the direction
 
             // Calculate the rotation so that the forward vector of the decal points towards the hit point

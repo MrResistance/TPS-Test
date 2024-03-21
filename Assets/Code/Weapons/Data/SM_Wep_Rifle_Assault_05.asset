@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Assault Rifle
   UsablePrefabFilePath: Prefabs/Weapons/SM_Wep_Rifle_Assault_05
-  CollectablePrefabFilePath: Prefabs/Collectables/SM_Wep_Rifle_Assault_05
   FireMode: 1
   WeaponType: 1
   HapticShotStrength: 0.5
@@ -22,7 +21,10 @@ MonoBehaviour:
   Damage: 10
   EffectiveRange: 300
   FireRateCooldown: 0.1
-  Recoil: {x: 0.02, y: 0.075}
+  RecoilDistance: {x: 0.05, y: 0.00025}
+  RecoilStrength: 30000
+  Spread: {x: 0, y: 0}
+  ImpactsPerShot: 1
   MaxClipSize: 30
   MaxReserveAmmo: 300
   CurrentReserveAmmo: 150

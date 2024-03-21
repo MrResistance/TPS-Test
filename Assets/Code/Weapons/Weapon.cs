@@ -270,6 +270,7 @@ public class Weapon : MonoBehaviour
 
             RecoilListener.Instance.Recoil = randomRecoil;
 
+
             //PlayRandomSFX(m_shot);
         }
     }
@@ -299,7 +300,7 @@ public class Weapon : MonoBehaviour
         WeaponType = m_weaponData.WeaponType;
         m_hapticShotStrength = m_weaponData.HapticShotStrength;
         m_hitForce = m_weaponData.HitForce;
-        m_recoil = m_weaponData.Recoil;
+        m_recoil = m_weaponData.RecoilDistance;
         m_damage = m_weaponData.Damage;
         m_effectiveRange = m_weaponData.EffectiveRange;
         m_fireRateCooldown = m_weaponData.FireRateCooldown;

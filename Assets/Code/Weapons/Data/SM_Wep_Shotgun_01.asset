@@ -21,7 +21,10 @@ MonoBehaviour:
   Damage: 50
   EffectiveRange: 50
   FireRateCooldown: 0.75
-  Recoil: {x: 0, y: 0.1}
+  RecoilDistance: {x: 0, y: 0.3}
+  RecoilStrength: 50
+  Spread: {x: 0.1, y: 0.1}
+  ImpactsPerShot: 6
   MaxClipSize: 8
   MaxReserveAmmo: 32
   CurrentReserveAmmo: 32

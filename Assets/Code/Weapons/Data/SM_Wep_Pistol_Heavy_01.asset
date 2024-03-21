@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Desert Eagle
   UsablePrefabFilePath: Prefabs/Weapons/SM_Wep_Pistol_Heavy_01
-  CollectablePrefabFilePath: Prefabs/Collectables/SM_Wep_Pistol_Heavy_01
   FireMode: 0
   WeaponType: 0
   HapticShotStrength: 0.6
@@ -22,7 +21,10 @@ MonoBehaviour:
   Damage: 10
   EffectiveRange: 100
   FireRateCooldown: 0.5
-  Recoil: {x: 0, y: 0.05}
+  RecoilDistance: {x: 0, y: 0.2}
+  RecoilStrength: 30
+  Spread: {x: 0, y: 0}
+  ImpactsPerShot: 1
   MaxClipSize: 12
   MaxReserveAmmo: 60
   CurrentReserveAmmo: 60

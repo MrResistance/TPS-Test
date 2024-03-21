@@ -1,12 +1,14 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
-public class RecoilListener : ObjectToScreenCenter
+public class RecoilListener : MonoBehaviour
 {
     public static RecoilListener Instance;
 
     public Vector2 Recoil;
 
-    private Vector3 m_localStartPosition;
+    [SerializeField] private MultiAimConstraint m_aimConstraint;
+
     private void Awake()
     {
         if (Instance == null)
@@ -20,20 +22,14 @@ public class RecoilListener : ObjectToScreenCenter
     }
 
     // Update is called once per frame
-    public override void Update()
+    public void Update()
     {
-        m_localStartPosition = transform.localPosition;
-
-        if (Recoil == Vector2.zero)
+        if (WeaponRig.Instance.CurrentWeapon != null)
         {
-            base.Update();
-            return;
+            m_aimConstraint.data.offset = new Vector3(
+                m_aimConstraint.data.offset.x, 
+                Recoil.y * WeaponRig.Instance.CurrentWeapon.WeaponData.RecoilStrength,
+                m_aimConstraint.data.offset.z);
         }
-
-        transform.position += new Vector3(Recoil.x, Recoil.y, m_localStartPosition.z);
-
-        transform.position = new Vector3(
-        Mathf.Lerp(transform.position.x, m_localStartPosition.x, Time.deltaTime * 100),
-        Mathf.Lerp(transform.position.y, m_localStartPosition.y, Time.deltaTime * 100), m_localStartPosition.z);
     }
 }
