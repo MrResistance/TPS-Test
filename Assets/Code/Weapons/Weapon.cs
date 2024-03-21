@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
@@ -236,17 +236,20 @@ public class Weapon : MonoBehaviour
     #region Shooting
     protected void RequestShot()
     {
-        if (Time.time >= m_lastTimeFired + m_fireRateCooldown && !m_currentlyShooting)
+        if (PlayerAnimationController.Instance.Animator.GetBool("Aiming"))
         {
-            m_lastTimeFired = Time.time;
-            if (m_currentAmmoInClip > 0)
+            if (Time.time >= m_lastTimeFired + m_fireRateCooldown && !m_currentlyShooting)
             {
-                m_currentlyShooting = true;
-                Shoot();
-            }
-            else
-            {
-                //PlayRandomSFX(m_dryFire);
+                m_lastTimeFired = Time.time;
+                if (m_currentAmmoInClip > 0)
+                {
+                    m_currentlyShooting = true;
+                    Shoot();
+                }
+                else
+                {
+                    //PlayRandomSFX(m_dryFire);
+                }
             }
         }
     }
@@ -265,7 +268,7 @@ public class Weapon : MonoBehaviour
             PlayerInputs.Instance.StartHapticFeedback(m_hapticShotStrength, m_fireRateCooldown / 2);
 
             float randomXrecoil = UnityEngine.Random.Range(-m_recoil.x, m_recoil.x);
-            Vector2 randomRecoil = new (randomXrecoil, m_recoil.y);
+            Vector2 randomRecoil = new(randomXrecoil, m_recoil.y);
 
             RecoilListener.Instance.Recoil = randomRecoil;
 
@@ -273,7 +276,7 @@ public class Weapon : MonoBehaviour
             //PlayRandomSFX(m_shot);
         }
     }
-    
+
     protected void StopShooting()
     {
         PlayerInputs.Instance.StopHapticFeedback();

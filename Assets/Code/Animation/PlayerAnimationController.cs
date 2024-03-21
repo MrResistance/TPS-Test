@@ -9,6 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
     public static PlayerAnimationController Instance;
 
     [SerializeField] private Animator m_animator;
+    public Animator Animator => m_animator;
 
     [SerializeField] private RigBuilder m_rigBuilder;
     [SerializeField] private MultiAimConstraint m_bodyConstraint;
