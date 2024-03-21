@@ -269,7 +269,7 @@ public class Weapon : MonoBehaviour
 
             RecoilListener.Instance.Recoil = randomRecoil;
 
-
+            ScreenShake.Instance.TriggerShake(0.1f, 0.005f, 0.005f);
             //PlayRandomSFX(m_shot);
         }
     }
