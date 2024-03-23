@@ -54,8 +54,6 @@ public class HitscanWeapon : MonoBehaviour
 
             if (Physics.Raycast(m_ray, out m_weapon.m_raycastHit, m_weapon.m_effectiveRange))
             {
-                Debug.Log("Hit Collider: " + m_weapon.m_raycastHit.collider.gameObject.name);
-
                 PhysicsCalculation();
 
                 DamageCalculation();

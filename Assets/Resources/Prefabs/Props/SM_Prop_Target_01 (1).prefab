@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 8061409913185307322}
   - component: {fileID: 8061409911818645046}
   - component: {fileID: 1879199492528719757}
+  - component: {fileID: 4245537589219719888}
   m_Layer: 3
   m_Name: SM_Prop_Target_01 (1)
   m_TagString: Untagged
@@ -410,3 +411,16 @@ MonoBehaviour:
   m_maxHitPoints: 99999
   m_currentHitPoints: 0
   HitPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &4245537589219719888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060175457168671529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a6fedccf04f654bb72572ca55fc760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damageable: {fileID: 1879199492528719757}

@@ -7,15 +7,13 @@ public class TargetDummy : MonoBehaviour
     [SerializeField] private HingeJoint m_hingeJoint;
     [SerializeField] private Damageable m_damageable;
 
-    public event Action OnTargetShot;
-
     private void Start()
     {
         m_damageable.OnHit += MoveTargetDown;
     }
 
     [Button]
-    public void MoveTargetDown()
+    public void MoveTargetDown(int _)
     {
         m_hingeJoint.useSpring = true;
     }

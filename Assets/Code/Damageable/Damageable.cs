@@ -7,7 +7,7 @@ public class Damageable : MonoBehaviour
     [SerializeField] private int m_currentHitPoints;
     public int CurrentHitPoints => m_currentHitPoints;
 
-    public event Action OnHit;
+    public event Action<int> OnHit;
     public event Action OnDeath;
 
     public Vector3 HitPosition;
@@ -38,6 +38,6 @@ public class Damageable : MonoBehaviour
             m_currentHitPoints = 0;
             OnDeath?.Invoke();
         }
-        OnHit?.Invoke();
+        OnHit?.Invoke(amount);
     }
 }
