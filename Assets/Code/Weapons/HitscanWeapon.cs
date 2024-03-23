@@ -54,6 +54,8 @@ public class HitscanWeapon : MonoBehaviour
 
             if (Physics.Raycast(m_ray, out m_weapon.m_raycastHit, m_weapon.m_effectiveRange))
             {
+                Debug.Log("Hit Collider: " + m_weapon.m_raycastHit.collider.gameObject.name);
+
                 PhysicsCalculation();
 
                 DamageCalculation();
@@ -61,11 +63,6 @@ public class HitscanWeapon : MonoBehaviour
                 HandleImpactDecals();
 
                 HandleSurfaceParticleEffects();
-
-                if (m_weapon.m_raycastHit.collider.TryGetComponent(out TargetDummy dummy))
-                {
-                    dummy.MoveTargetDown();
-                }
             }
         }
     }
@@ -86,7 +83,7 @@ public class HitscanWeapon : MonoBehaviour
     /// </summary>
     private void DamageCalculation()
     {
-        if (m_weapon.m_raycastHit.collider.gameObject.layer == GameSettings.Instance.DamageableLayer)
+        if ((1 << m_weapon.m_raycastHit.collider.gameObject.layer & GameSettings.Instance.DamageableLayer.value) != 0)
         {
             if (m_weapon.m_raycastHit.collider.TryGetComponent(out DamageableChild damageableChild))
             {
@@ -105,7 +102,7 @@ public class HitscanWeapon : MonoBehaviour
     /// </summary>
     private void HandleImpactDecals()
     {
-        if (m_weapon.m_raycastHit.collider.gameObject.layer == GameSettings.Instance.BulletImpactDecalLayer)
+        if ((1 << m_weapon.m_raycastHit.collider.gameObject.layer & GameSettings.Instance.BulletImpactDecalLayer) != 0)
         {
             // Calculate the direction from the hit point back towards the ray origin
             Vector3 directionToHitPoint = m_weapon.m_raycastHit.point - m_ray.origin;

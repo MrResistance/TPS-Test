@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_weapon: {fileID: 4166681549936137735}
-  m_rayFromBarrel: 1
+  m_rayFromBarrel: 0
 --- !u!114 &323920493326990597
 MonoBehaviour:
   m_ObjectHideFlags: 0
