@@ -6,10 +6,6 @@ public class HitscanWeapon : MonoBehaviour
     [SerializeField] private bool m_rayFromBarrel = false;
     private Ray m_ray;
     #region Event Subscriptions
-    private void Start()
-    {
-        m_weapon.OnShoot += HitCalculation;
-    }
     private void OnEnable()
     {
         m_weapon.OnShoot -= HitCalculation;
