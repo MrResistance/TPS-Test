@@ -536,8 +536,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_damageable: {fileID: 1879199492528719757}
   m_audioSource: {fileID: 8693547329537970656}
-  m_hitSounds:
-  - {fileID: 8300000, guid: 35e40a22f20be214f822bde856d08028, type: 3}
-  - {fileID: 8300000, guid: d7de2139696fd974a9334cc97a4e1057, type: 3}
-  - {fileID: 8300000, guid: 97619afc3b00eb1489601655169c22be, type: 3}
+  m_hitSounds: []
   m_deathSounds: []

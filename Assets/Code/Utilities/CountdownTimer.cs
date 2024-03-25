@@ -1,16 +1,12 @@
 using Sirenix.OdinInspector;
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CountdownTimer : MonoBehaviour
 {
-    [SerializeField] private countType m_countType;
-
-    public enum countType { timer, countdown }
-
     private float m_currentTime;
-    private float m_endTime;
 
     private bool m_countdownActive;
     private bool m_timerActive;
@@ -25,7 +21,7 @@ public class CountdownTimer : MonoBehaviour
     {
         OnCountdownStarted?.Invoke();
         m_countdownActive = true;
-        m_endTime = time;
+        m_currentTime = time;
     }
 
     public void StopCountdown()
@@ -50,29 +46,28 @@ public class CountdownTimer : MonoBehaviour
 
     private void Update()
     {
-        if (m_countdownActive || m_timerActive)
+        if (m_countdownActive)
         {
-            switch (m_countType)
-            {
-                case countType.timer:
-                    TimerTick();
-                    break;
-                case countType.countdown:
-                    CountdownTick();
-                    break;
-                default:
-                    break;
-            }
+            CountdownTick();
             UpdateText(m_currentTime);
         }
+        else if (m_timerActive)
+        {
+            TimerTick();
+            UpdateText(m_currentTime);
+        }
+        
     }
 
     private void CountdownTick()
     {
         m_currentTime -= Time.deltaTime;
-        if (m_currentTime <= m_endTime)
+        if (m_currentTime <= 0)
         {
             OnCountdownComplete?.Invoke();
+            m_countdownActive = false;
+            m_currentTime = 0;
+            UpdateText(m_currentTime);
         }
     }
 

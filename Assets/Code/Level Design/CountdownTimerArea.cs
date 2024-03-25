@@ -10,6 +10,7 @@ public class CountdownTimerArea : MonoBehaviour
     private enum areaType { start, end, other }
 
     [SerializeField] private bool m_resetOnRestart = true;
+    [SerializeField] private float m_countdownTimeInSeconds;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +23,7 @@ public class CountdownTimerArea : MonoBehaviour
                         ScreenspaceUIManager.Instance.CountdownTimer.StartTimer(true);
                         break;
                     case countType.countdown:
-                        ScreenspaceUIManager.Instance.CountdownTimer.StartCountdown(0.0f);
+                        ScreenspaceUIManager.Instance.CountdownTimer.StartCountdown(m_countdownTimeInSeconds);
                         break;
                     default:
                         break;
