@@ -177,5 +177,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8d920fa16ce2749ac5efd63f13ef25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LookAtPlayer: 1
+  m_LookAtPlayerCamera: 1
   m_Target: {fileID: 0}

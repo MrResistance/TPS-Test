@@ -6,6 +6,7 @@ public class ScreenspaceUIManager : MonoBehaviour
 {
     public static ScreenspaceUIManager Instance;
 
+    public CountdownTimer CountdownTimer;
     [SerializeField] private Image m_crosshair;
     [SerializeField] private TextMeshProUGUI m_ammoCounterText;
     [SerializeField] private TextMeshProUGUI m_interactText;
