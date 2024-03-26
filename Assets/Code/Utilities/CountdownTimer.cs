@@ -1,7 +1,5 @@
-using Sirenix.OdinInspector;
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CountdownTimer : MonoBehaviour

@@ -20,7 +20,7 @@ public class CountdownTimerArea : MonoBehaviour
                 switch (m_countType)
                 {
                     case countType.timer:
-                        ScreenspaceUIManager.Instance.CountdownTimer.StartTimer(true);
+                        ScreenspaceUIManager.Instance.CountdownTimer.StartTimer(m_resetOnRestart);
                         break;
                     case countType.countdown:
                         ScreenspaceUIManager.Instance.CountdownTimer.StartCountdown(m_countdownTimeInSeconds);
