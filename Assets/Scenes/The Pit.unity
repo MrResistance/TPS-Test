@@ -1985,7 +1985,7 @@ GameObject:
   - component: {fileID: 210231204}
   - component: {fileID: 210231206}
   - component: {fileID: 210231205}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ThirdSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2456,7 +2456,7 @@ GameObject:
   - component: {fileID: 340065118}
   - component: {fileID: 340065120}
   - component: {fileID: 340065119}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SecondSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5042,7 +5042,7 @@ GameObject:
   - component: {fileID: 705145718}
   - component: {fileID: 705145719}
   - component: {fileID: 705145720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirstSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12458,7 +12458,7 @@ GameObject:
   - component: {fileID: 1665742242}
   - component: {fileID: 1665742244}
   - component: {fileID: 1665742243}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EndCheckpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15305,7 +15305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958527763}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TargetCheckpoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
