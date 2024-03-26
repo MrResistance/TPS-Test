@@ -6,10 +6,15 @@ public class TargetDummy : MonoBehaviour
 {
     [SerializeField] private HingeJoint m_hingeJoint;
     [SerializeField] private Damageable m_damageable;
-
+    [SerializeField] private CheckpointArea m_checkpointArea;
     private void Start()
     {
         m_damageable.OnHit += MoveTargetDown;
+
+        if (m_checkpointArea != null)
+        {
+            m_checkpointArea.OnCheckpointReached += MoveTargetUp;
+        }
     }
 
     [Button]
