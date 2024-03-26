@@ -221,14 +221,30 @@ public class Weapon : MonoBehaviour
         //PlayRandomSFX(m_insertMag);
     }
 
+    public void SetReserveAmmoToMax()
+    {
+        m_currentReserveAmmo = m_maxReserveAmmo;
+        WeaponRig.Instance.UpdateAmmoCounterMethod();
+    }
+
     public void GainReserveAmmo(int amount)
     {
         m_currentReserveAmmo += amount;
+        if (m_currentReserveAmmo > m_maxReserveAmmo)
+        {
+            m_currentReserveAmmo = m_maxReserveAmmo;
+        }
+        WeaponRig.Instance.UpdateAmmoCounterMethod();
     }
 
     public void LoseReserveAmmo(int amount)
     {
         m_currentReserveAmmo -= amount;
+        if (m_currentReserveAmmo <= 0)
+        {
+            m_currentReserveAmmo = 0;
+        }
+        WeaponRig.Instance.UpdateAmmoCounterMethod();
     }
 
     #endregion
