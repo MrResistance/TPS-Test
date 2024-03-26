@@ -28,3 +28,39 @@ MonoBehaviour:
   MaxClipSize: 12
   MaxReserveAmmo: 60
   CurrentReserveAmmo: 60
+  CockWeapon_SFX:
+  - {fileID: 8300000, guid: 3d9f952ac41d7e44090d00b4da88a3b9, type: 3}
+  - {fileID: 8300000, guid: c3791d32f8cd3534ea4e03ce8cfdf4b2, type: 3}
+  - {fileID: 8300000, guid: a8f51a5a84d9e814a9f77d0379a478fe, type: 3}
+  - {fileID: 8300000, guid: 0616372a5aff45e4db997d8c8e53b4a5, type: 3}
+  - {fileID: 8300000, guid: 1cb0bd86a704dab4cb7044a2d4085a0f, type: 3}
+  - {fileID: 8300000, guid: 0240db25219637947a1e4e7eafa4209b, type: 3}
+  - {fileID: 8300000, guid: 6c7a5f99c4011e849b024fc4bde2a8e4, type: 3}
+  DryFire_SFX:
+  - {fileID: 8300000, guid: 2cee6393880ef4842a1b24b9252514bb, type: 3}
+  - {fileID: 8300000, guid: d153dc45fdc81fa48a65924ce545bf84, type: 3}
+  - {fileID: 8300000, guid: bf83fd331e38e794c9ecc10486883208, type: 3}
+  - {fileID: 8300000, guid: 324826e34b8ad9f4b8e27ec3d225441c, type: 3}
+  - {fileID: 8300000, guid: d6cb4a197471bc24ca8d7d6c485c5e77, type: 3}
+  - {fileID: 8300000, guid: e8cbc6635bf574344a95849181573306, type: 3}
+  EjectMag_SFX:
+  - {fileID: 8300000, guid: 6537c4ce0bd6e8e41a570e51908a04c9, type: 3}
+  - {fileID: 8300000, guid: 7ce8e46958c5fb64b8a561bc1611bda8, type: 3}
+  - {fileID: 8300000, guid: e1d9bf3bd8d1c974a997592c0ba9e019, type: 3}
+  - {fileID: 8300000, guid: d1f9486c8b5691846a7dc5dad8d11974, type: 3}
+  - {fileID: 8300000, guid: 598e965660576064c9387d9f9815ebd9, type: 3}
+  - {fileID: 8300000, guid: 5ee673b940584ab448fbfdd0f3e7ad2b, type: 3}
+  InsertMag_SFX:
+  - {fileID: 8300000, guid: 4b343718fd83c7146a219ae2534d5bd9, type: 3}
+  - {fileID: 8300000, guid: 5de7c96f384a8ba45b667c1963496988, type: 3}
+  - {fileID: 8300000, guid: 4d7cf4ed753291743a61a93014baaa1f, type: 3}
+  - {fileID: 8300000, guid: e59da7392c6bf2c4a970a78d237969a6, type: 3}
+  - {fileID: 8300000, guid: 19a70d2df7fd11940bb4db77877517ca, type: 3}
+  SafetySwitch_SFX: []
+  Fire_SFX:
+  - {fileID: 8300000, guid: 5fb0a5321e2df2345a8d277a261a7071, type: 3}
+  - {fileID: 8300000, guid: 811eac413c2c40640955541ee33ef175, type: 3}
+  - {fileID: 8300000, guid: 2b1f7c8683f8d284884e03042d9f1651, type: 3}
+  - {fileID: 8300000, guid: 11bbbba19d32e864daf579e9f33d8d0d, type: 3}
+  - {fileID: 8300000, guid: aaadfb5e468c58248923ddfb70dea006, type: 3}
+  Slide_SFX: []

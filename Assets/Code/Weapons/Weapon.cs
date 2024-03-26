@@ -44,6 +44,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Animator m_animator;
     [SerializeField] private ParticleSystem m_gunshotFX;
     public Transform Barrel;
+    [SerializeField] private AudioSource m_audioSource;
 
     [Header("IK Targeting - Idle")]
     public Transform SecondHandGrabWeaponTargetIdle;
@@ -176,7 +177,7 @@ public class Weapon : MonoBehaviour
                 LoseReserveAmmo(reloadRequestResult - m_currentAmmoInClip);
             }
 
-            //PlayRandomSFX(m_ejectMag);
+            PlayRandomSFX(WeaponData.EjectMag_SFX);
 
             m_currentAmmoInClip = 0;
             m_amountToReload = reloadRequestResult;
@@ -218,7 +219,7 @@ public class Weapon : MonoBehaviour
         m_currentAmmoInClip += m_amountToReload;
         m_amountToReload = 0;
 
-        //PlayRandomSFX(m_insertMag);
+        PlayRandomSFX(WeaponData.InsertMag_SFX);
     }
 
     public void SetReserveAmmoToMax()
@@ -264,7 +265,7 @@ public class Weapon : MonoBehaviour
                 }
                 else
                 {
-                    //PlayRandomSFX(m_dryFire);
+                    PlayRandomSFX(WeaponData.DryFire_SFX);
                 }
             }
         }
@@ -289,7 +290,7 @@ public class Weapon : MonoBehaviour
             RecoilListener.Instance.Recoil = randomRecoil;
 
             ScreenShake.Instance.TriggerShake(0.1f, 0.005f, 0.005f);
-            //PlayRandomSFX(m_shot);
+            PlayRandomSFX(WeaponData.Fire_SFX);
         }
     }
 
@@ -307,7 +308,7 @@ public class Weapon : MonoBehaviour
     {
         if (sfx.Count > 0)
         {
-            //m_audioSource.PlayOneShot(sfx[UnityEngine.Random.Range(0, sfx.Count)]);
+            m_audioSource.PlayOneShot(sfx[UnityEngine.Random.Range(0, sfx.Count)]);
         }
     }
 

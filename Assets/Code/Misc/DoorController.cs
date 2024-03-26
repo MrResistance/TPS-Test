@@ -3,11 +3,18 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private CheckpointArea m_checkpointArea;
+
+    [Header("Rotation")]
     [SerializeField] private Vector3 m_closedRotation;
     [SerializeField] private Vector3 m_openRotation;
     [SerializeField] private float duration = 1.0f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip m_open_SFX;
+    [SerializeField] private AudioClip m_close_SFX;
     private Quaternion targetRotation;
     private float rotationSpeed;
     private float rotationFraction = 0.0f;
@@ -33,6 +40,11 @@ public class DoorController : MonoBehaviour
 
     private void Open()
     {
+        if (m_AudioSource != null)
+        {
+            m_AudioSource.clip = m_open_SFX;
+            m_AudioSource.Play();
+        }
         targetRotation = Quaternion.Euler(m_openRotation);
         rotationFraction = 0.0f;
         rotationSpeed = 1.0f / duration;
@@ -42,6 +54,11 @@ public class DoorController : MonoBehaviour
 
     private void Close()
     {
+        if (m_AudioSource != null)
+        {
+            m_AudioSource.clip = m_close_SFX;
+            m_AudioSource.Play();
+        }
         targetRotation = Quaternion.Euler(m_closedRotation);
         rotationFraction = 0.0f;
         rotationSpeed = 1.0f / duration; 

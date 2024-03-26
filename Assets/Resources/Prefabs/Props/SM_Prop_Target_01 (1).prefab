@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0f4e907f5520c418be6c2c1a20f79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surfaceType: 6
+  surfaceType: 3
 --- !u!114 &8061409911818645046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hingeJoint: {fileID: 8061409913185307326}
   m_damageable: {fileID: 1879199492528719757}
+  m_checkpointArea: {fileID: 0}
 --- !u!114 &1879199492528719757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_damageable: {fileID: 1879199492528719757}
+  m_repeatedScoring: 0
 --- !u!82 &8693547329537970656
 AudioSource:
   m_ObjectHideFlags: 0
