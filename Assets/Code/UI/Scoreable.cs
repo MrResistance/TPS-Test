@@ -14,7 +14,7 @@ public class Scoreable : MonoBehaviour
 
     private void ShowPoints(int amount)
     {
-        Vector3 pointTextSpawnPoint = transform.position + new Vector3(0, 2, 0);
+        Vector3 pointTextSpawnPoint = transform.position + new Vector3(0, 1, 0);
 
         var pointText = ObjectPooler.Instance.SpawnFromPool("PointText", pointTextSpawnPoint, transform.rotation);
 
