@@ -12809,7 +12809,7 @@ GameObject:
   - component: {fileID: 1743720894}
   - component: {fileID: 1743720896}
   - component: {fileID: 1743720895}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DoorCheckpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
