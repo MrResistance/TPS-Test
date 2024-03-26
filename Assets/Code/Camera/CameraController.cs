@@ -13,6 +13,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float m_ADS_FOV;
     [SerializeField] private float m_HipFire_FOV;
 
+    [Header("Collision")]
+    [SerializeField] private LayerMask collisionLayerMask; 
+    [SerializeField] private float minimumDistanceFromCharacter = 0.5f;
+
     private float m_transitionProgress;
     private float m_transitionDuration = 0.5f;
     private bool m_isAimingDownSight;
@@ -78,9 +82,27 @@ public class CameraController : MonoBehaviour
 
     private void FollowCharacter()
     {
-        Vector3 newPosition = m_characterTransform.position + m_characterTransform.TransformDirection(m_cameraOffset);
-        transform.position = newPosition;
+        Vector3 desiredCameraPosition = m_characterTransform.position + m_characterTransform.TransformDirection(m_cameraOffset);
+        Vector3 direction = (desiredCameraPosition - m_characterTransform.position).normalized;
+        float distance = m_cameraOffset.magnitude;
+
+        RaycastHit hit;
+        // Perform the raycast from the character towards the desired camera position
+        if (Physics.Raycast(m_characterTransform.position, direction, out hit, distance, collisionLayerMask))
+        {
+            // If an obstacle is detected, position the camera at the hit point, but maintain the original camera height.
+            // This ensures the camera doesn't move vertically.
+            Vector3 hitPosition = hit.point - direction * minimumDistanceFromCharacter;
+            transform.position = new Vector3(hitPosition.x, desiredCameraPosition.y, hitPosition.z); // Maintaining the desired camera's y (height)
+        }
+        else
+        {
+            // If no obstacles, position the camera at the desired offset from the character
+            transform.position = desiredCameraPosition;
+        }
     }
+
+
 
     private void RotateCamera()
     {

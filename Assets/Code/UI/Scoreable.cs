@@ -4,6 +4,7 @@ using UnityEngine;
 public class Scoreable : MonoBehaviour
 {
     [SerializeField] private Damageable m_damageable;
+    [SerializeField] private bool m_repeatedScoring = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,5 +30,10 @@ public class Scoreable : MonoBehaviour
         }
 
         pointText.GetComponent<TextMeshProUGUI>().text = pointTextFinal.ToString();
+
+        if (!m_repeatedScoring)
+        {
+            m_damageable.OnHit -= ShowPoints;
+        }
     }
 }
