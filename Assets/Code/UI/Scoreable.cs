@@ -10,6 +10,8 @@ public class Scoreable : MonoBehaviour
     void Start()
     {
         m_damageable.OnHit += ShowPoints;
+
+        GameManager.Instance.OnResetMap += Reset;
     }
 
     private void ShowPoints(int amount)
@@ -35,5 +37,11 @@ public class Scoreable : MonoBehaviour
         {
             m_damageable.OnHit -= ShowPoints;
         }
+    }
+
+    private void Reset()
+    {
+        m_damageable.OnHit -= ShowPoints;
+        m_damageable.OnHit += ShowPoints;
     }
 }

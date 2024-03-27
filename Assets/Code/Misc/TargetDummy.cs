@@ -11,21 +11,26 @@ public class TargetDummy : MonoBehaviour
     {
         m_damageable.OnHit += MoveTargetDown;
 
+        GameManager.Instance.OnResetMap += Reset;
+
         if (m_checkpointArea != null)
         {
             m_checkpointArea.OnCheckpointReached += MoveTargetUp;
         }
     }
 
-    [Button]
     public void MoveTargetDown(int _)
     {
         m_hingeJoint.useSpring = true;
     }
 
-    [Button]
     public void MoveTargetUp()
     {
         m_hingeJoint.useSpring = false;
+    }
+
+    private void Reset()
+    {
+        MoveTargetDown(0);
     }
 }

@@ -1,8 +1,10 @@
-using System.Collections;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private bool m_openAtCheckpoint = true;
+
     [Header("References")]
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private CheckpointArea m_checkpointArea;
@@ -21,7 +23,16 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
-        m_checkpointArea.OnCheckpointReached += Open;
+        if (m_openAtCheckpoint)
+        {
+            m_checkpointArea.OnCheckpointReached += Open;
+        }
+        else
+        {
+            m_checkpointArea.OnCheckpointReached += Close;
+        }
+
+        GameManager.Instance.OnResetMap += Reset;
     }
 
     private void UpdateRotation()
@@ -29,11 +40,11 @@ public class DoorController : MonoBehaviour
         if (rotationFraction < 1.0f)
         {
             rotationFraction += rotationSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationFraction);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, rotationFraction);
         }
         else
         {
-            transform.rotation = targetRotation; // Ensure exact rotation
+            transform.localRotation = targetRotation; // Ensure exact rotation
             CancelInvoke(nameof(UpdateRotation));
         }
     }
@@ -64,5 +75,11 @@ public class DoorController : MonoBehaviour
         rotationSpeed = 1.0f / duration; 
         CancelInvoke(nameof(UpdateRotation)); 
         InvokeRepeating(nameof(UpdateRotation), 0f, Time.deltaTime);
+    }
+
+    private void Reset()
+    {
+        Debug.Log(name + " resetting...");
+        Close();
     }
 }
